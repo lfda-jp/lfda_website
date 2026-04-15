@@ -7,8 +7,7 @@ export default function VMV() {
       <div className={styles.left}>
         <h2 className={styles.heading}>
           Vision,<br />
-          Mission,<br />
-          <em>Values</em>
+          <em>Mission</em>
         </h2>
       </div>
       <div className={styles.right}>

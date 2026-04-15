@@ -25,9 +25,12 @@ export default function Hero() {
       </div>
 
       {/* 右カラム */}
-      <div className={styles.visual} aria-hidden="true">
-        {/* 将来的に <img src="..." alt="..." /> に差し替え可能 */}
-        <span className={styles.watermark}>LFDA</span>
+      <div className={styles.visual}>
+        <img
+          src={import.meta.env.BASE_URL + 'lfda_logo.png'}
+          alt="LFDA"
+          className={styles.logoMark}
+        />
       </div>
     </section>
   )

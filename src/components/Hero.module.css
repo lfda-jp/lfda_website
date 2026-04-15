@@ -68,13 +68,10 @@
   overflow: hidden;
 }
 
-.watermark {
-  font-family: var(--font-serif);
-  font-size: 9rem;
-  font-weight: 700;
-  color: rgba(26, 26, 24, 0.15);
-  user-select: none;
-  letter-spacing: -0.02em;
+.logoMark {
+  width: 60%;
+  max-width: 320px;
+  object-fit: contain;
 }
 
 @media (max-width: 600px) {
