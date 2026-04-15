@@ -18,7 +18,7 @@ export default function App() {
         <Hero />
         <Pillars />
         <Contents />
-        <Members />
+        {/* <Members /> */}
         <Values />
         <Platforms />
         <Contact />
