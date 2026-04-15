@@ -5,7 +5,7 @@
 
 .label {
   font-family: var(--font-jp);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -51,21 +51,21 @@
 
 .date {
   font-family: var(--font-jp);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   letter-spacing: 0.08em;
   color: var(--muted);
 }
 
 .title {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   line-height: 1.4;
   color: var(--ink);
 }
 
 .readMore {
   font-family: var(--font-jp);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   color: var(--accent);
   margin-top: auto;

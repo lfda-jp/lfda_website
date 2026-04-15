@@ -19,7 +19,7 @@
 
 .handle {
   font-family: var(--font-jp);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   color: var(--ink);
   font-weight: 700;
@@ -28,7 +28,7 @@
 .desc {
   margin-top: 0.25rem;
   font-family: var(--font-jp);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 
@@ -36,7 +36,7 @@
   display: inline-block;
   flex-shrink: 0;
   font-family: var(--font-jp);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   padding: 0.65rem 1.5rem;
   background: #E1306C;

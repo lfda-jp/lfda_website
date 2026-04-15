@@ -15,7 +15,7 @@
 
 .eyebrow {
   font-family: var(--font-jp);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -61,7 +61,7 @@
 
 .visual {
   position: relative;
-  background: linear-gradient(135deg, #d4cfbf, #9e9890);
+  background: var(--cream);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -39,7 +39,7 @@
 
 .platform {
   font-family: var(--font-jp);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   color: var(--brand, var(--ink));
   font-weight: 700;
@@ -47,14 +47,14 @@
 
 .desc {
   font-family: var(--font-jp);
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--muted);
   flex: 1;
 }
 
 .arrow {
   font-family: var(--font-jp);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--muted);
   align-self: flex-end;
 }

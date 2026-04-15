@@ -8,20 +8,21 @@ import Values from './components/Values'
 import Platforms from './components/Platforms'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Reveal from './components/Reveal'
 
 export default function App() {
   return (
     <>
       <Nav />
       <main>
-        <VMV />
-        <Hero />
-        <Pillars />
-        <Contents />
+        <Reveal><VMV /></Reveal>
+        <Reveal><Hero /></Reveal>
+        <Reveal><Pillars /></Reveal>
+        <Reveal><Contents /></Reveal>
         {/* <Members /> */}
-        <Values />
-        <Platforms />
-        <Contact />
+        <Reveal><Values /></Reveal>
+        <Reveal><Platforms /></Reveal>
+        <Reveal><Contact /></Reveal>
       </main>
       <Footer />
     </>

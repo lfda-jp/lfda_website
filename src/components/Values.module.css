@@ -1,5 +1,6 @@
 .values {
   border-bottom: 1px solid var(--rule);
+  background: var(--cream);
 }
 
 .header {
@@ -39,16 +40,56 @@
   border-bottom: none;
 }
 
+/* 5枚目カード */
+.lastCard {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding: 3rem 4rem;
+  background: var(--accent);
+  color: var(--paper);
+}
+
+.lastNo {
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(245, 242, 236, 0.25);
+  flex-shrink: 0;
+}
+
+.lastContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lastTitle {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--paper);
+}
+
+.lastBody {
+  font-family: var(--font-jp);
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(245, 242, 236, 0.8);
+}
+
 .no {
   font-family: var(--font-jp);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   color: var(--muted);
 }
 
 .title {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.4;
   color: var(--ink);
@@ -56,7 +97,7 @@
 
 .body {
   font-family: var(--font-jp);
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.85;
   color: var(--muted);
 }
@@ -85,5 +126,16 @@
 
   .full {
     grid-column: 1;
+  }
+
+  .lastCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .lastNo {
+    font-size: 3.5rem;
   }
 }

@@ -2,7 +2,7 @@
   background: var(--ink);
   color: var(--paper);
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   padding: 2rem 4rem;
   gap: 1rem;
@@ -25,7 +25,7 @@
 
 .email {
   font-family: var(--font-jp);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   color: var(--paper);
   transition: color 0.2s;
@@ -37,7 +37,7 @@
 
 .igText {
   font-family: var(--font-jp);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--rule);
   transition: color 0.2s;
 }

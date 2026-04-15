@@ -34,8 +34,9 @@
   gap: 0.5rem;
   padding: 2.5rem 2rem;
   border-right: 1px solid var(--rule);
+  border-top: 2px solid transparent;
   color: var(--ink);
-  transition: background 0.2s;
+  transition: border-top-color 0.2s, transform 0.2s;
 }
 
 .card:last-child {
@@ -43,7 +44,8 @@
 }
 
 .card:hover {
-  background: var(--cream);
+  border-top-color: var(--ink);
+  transform: translateY(-3px);
 }
 
 .iconWrap {
@@ -54,14 +56,14 @@
 
 .name {
   font-family: var(--font-jp);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   font-weight: 700;
 }
 
 .desc {
   font-family: var(--font-jp);
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--muted);
   flex: 1;
   line-height: 1.7;
@@ -69,7 +71,7 @@
 
 .arrow {
   font-family: var(--font-jp);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--muted);
   margin-top: auto;
 }

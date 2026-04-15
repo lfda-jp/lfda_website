@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useActiveSection } from '../hooks/useActiveSection'
 import styles from './Nav.module.css'
 
@@ -26,6 +26,13 @@ const InstagramIcon = () => (
 export default function Nav() {
   const activeId = useActiveSection(SECTION_IDS)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const tabs = [
     { label: 'About',    href: '#about' },
@@ -36,7 +43,7 @@ export default function Nav() {
   const sectionMap = { About: 'about', Contents: 'contents' }
 
   return (
-    <header className={styles.nav}>
+    <header className={`${styles.nav}${scrolled ? ` ${styles.scrolled}` : ''}`}>
       <a href="#about" className={styles.logo}>
         <img
           src={import.meta.env.BASE_URL + 'lfda_logo.png'}
