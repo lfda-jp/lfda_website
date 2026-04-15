@@ -1,0 +1,70 @@
+.section {
+  padding: 3rem 4rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--cream);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+}
+
+.heading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--brand, var(--ink));
+}
+
+.platform {
+  font-family: var(--font-jp);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--brand, var(--ink));
+  font-weight: 700;
+}
+
+.desc {
+  font-family: var(--font-jp);
+  font-size: 0.85rem;
+  color: var(--muted);
+  flex: 1;
+}
+
+.arrow {
+  font-family: var(--font-jp);
+  font-size: 0.8rem;
+  color: var(--muted);
+  align-self: flex-end;
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 2rem 1.5rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

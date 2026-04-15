@@ -1,0 +1,51 @@
+.pullquote {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: start;
+  padding: 4rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--cream);
+  gap: 1rem;
+}
+
+.mark {
+  font-family: var(--font-serif);
+  font-size: 8rem;
+  line-height: 0.8;
+  color: var(--accent);
+  user-select: none;
+}
+
+.quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.cite {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--font-jp);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-style: normal;
+}
+
+@media (max-width: 600px) {
+  .pullquote {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .mark {
+    font-size: 5rem;
+    margin-bottom: -1rem;
+  }
+
+  .quote {
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,96 @@
+.platforms {
+  border-bottom: 1px solid var(--rule);
+}
+
+.header {
+  padding: 3rem 4rem 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 3rem;
+  color: var(--ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2.5rem 2rem;
+  border-right: 1px solid var(--rule);
+  color: var(--ink);
+  transition: background 0.2s;
+}
+
+.card:last-child {
+  border-right: none;
+}
+
+.card:hover {
+  background: var(--cream);
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.name {
+  font-family: var(--font-jp);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.desc {
+  font-family: var(--font-jp);
+  font-size: 0.85rem;
+  color: var(--muted);
+  flex: 1;
+  line-height: 1.7;
+}
+
+.arrow {
+  font-family: var(--font-jp);
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: auto;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .card:nth-child(1),
+  .card:nth-child(2) {
+    border-bottom: 1px solid var(--rule);
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 2.5rem 1.5rem 1.5rem;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .card {
+    padding: 1.5rem 1.5rem;
+  }
+}
