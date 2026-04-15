@@ -1,7 +1,7 @@
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 85vh;
+  min-height: 55vh;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -9,8 +9,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 3rem 4rem 4rem;
-  gap: 1.5rem;
+  padding: 2.5rem 2rem 2.5rem 3rem;
+  gap: 1rem;
 }
 
 .eyebrow {
@@ -69,8 +69,8 @@
 }
 
 .logoMark {
-  width: 60%;
-  max-width: 320px;
+  width: 80%;
+  max-width: 420px;
   object-fit: contain;
 }
 
