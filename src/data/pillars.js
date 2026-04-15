@@ -20,4 +20,11 @@ export const pillars = [
     title: 'Voices',
     body: '編集部の、頭の中。AIには生成できない、人間の声と温度をそのまま届けるPodcastシリーズ。',
   },
+  {
+    id: 4,
+    series: 'Series 04',
+    emoji: '',
+    title: 'Deep Questions',
+    body: '疑問を深掘りする。立ち止まり、多角的に考える機会を作る。テクノロジーと社会の関係を、一緒に考える。',
+  },
 ]

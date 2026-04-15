@@ -11,9 +11,7 @@ export default function Hero() {
           <em className={styles.italic}>Digital Age</em>
         </h1>
         <p className={styles.sub}>
-          AI時代を生きる若者からのデジタルメディア。
-          アルゴリズムに流されるのではなく、自分でデジタル空間を再デザインする。
-          とめどなく進化するテクノロジーと、うまく生きていく方法を考え続ける。
+          AI時代を生きる若者からのデジタルメディア。アルゴリズムに流されるのではなく、自分でデジタル空間を再デザインする。とめどなく進化するテクノロジーと、うまく生きていく方法を考え続ける。
         </p>
         <a
           href="https://www.instagram.com/fillingyourdigitalwellbeing/"

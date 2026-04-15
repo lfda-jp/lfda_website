@@ -36,10 +36,10 @@
 
 .sub {
   font-family: var(--font-jp);
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--ink);
-  line-height: 1.9;
-  max-width: 40ch;
+  line-height: 1.85;
+  max-width: 56ch;
 }
 
 .cta {
