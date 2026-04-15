@@ -53,9 +53,9 @@
 }
 
 .text {
-  font-family: var(--font-jp);
-  font-size: 1.05rem;
-  line-height: 1.9;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.7;
   color: var(--paper);
 }
 
