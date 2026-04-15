@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useActiveSection } from '../hooks/useActiveSection'
 import styles from './Nav.module.css'
 
-const SECTION_IDS = ['about', 'contents', 'members']
+const SECTION_IDS = ['about', 'contents']
 
 const InstagramIcon = () => (
   <svg
@@ -30,11 +30,10 @@ export default function Nav() {
   const tabs = [
     { label: 'About',    href: '#about' },
     { label: 'Contents', href: '#contents' },
-    { label: 'Members',  href: '#members' },
     { label: 'Contact',  href: '#contact' },
   ]
 
-  const sectionMap = { About: 'about', Contents: 'contents', Members: 'members' }
+  const sectionMap = { About: 'about', Contents: 'contents' }
 
   return (
     <header className={styles.nav}>
