@@ -7,6 +7,14 @@
   border-bottom: 1px solid var(--rule);
 }
 
+.label {
+  font-family: var(--font-jp);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
 .heading {
   font-family: var(--font-serif);
   font-style: italic;
@@ -38,10 +46,10 @@
   background: var(--cream);
 }
 
-.nameRow {
+.iconWrap {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .name {

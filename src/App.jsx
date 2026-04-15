@@ -7,6 +7,7 @@ import Members from './components/Members'
 import VMV from './components/VMV'
 import Values from './components/Values'
 import Platforms from './components/Platforms'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
         <Members />
         <Values />
         <Platforms />
+        <Contact />
       </main>
       <Footer />
     </>

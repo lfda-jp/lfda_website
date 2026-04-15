@@ -6,9 +6,8 @@ export default function Pullquote() {
       <span className={styles.mark} aria-hidden="true">"</span>
       <blockquote>
         <p className={styles.quote}>
-          アルゴリズムに流されるのではなく、自分でデジタルを再デザインする。
+          アルゴリズムに流されるのではなく、自分でデジタル空間を再デザインする。
         </p>
-        <cite className={styles.cite}>— LFDA Mission Statement</cite>
       </blockquote>
     </section>
   )

@@ -31,7 +31,7 @@ export default function Nav() {
     { label: 'About',    href: '#about' },
     { label: 'Contents', href: '#contents' },
     { label: 'Members',  href: '#members' },
-    { label: 'Contact',  href: 'mailto:lfda.digitalwellbeing@gmail.com' },
+    { label: 'Contact',  href: '#contact' },
   ]
 
   const sectionMap = { About: 'about', Contents: 'contents', Members: 'members' }
@@ -42,8 +42,9 @@ export default function Nav() {
         <img
           src={import.meta.env.BASE_URL + 'lfda_logo.png'}
           alt="LFDA"
-          height="32"
+          className={styles.logoImg}
         />
+        <span className={styles.logoText}>Living Fully in Digital Age</span>
       </a>
 
       {/* デスクトップ用タブ */}

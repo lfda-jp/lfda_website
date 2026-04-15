@@ -7,7 +7,7 @@ export default function Hero() {
       <div className={styles.text}>
         <p className={styles.eyebrow}>Digital Wellbeing Media — Est. 2024</p>
         <h1 className={styles.heading}>
-          Living Fully in the{' '}
+          Living Fully in{' '}
           <em className={styles.italic}>Digital Age</em>
         </h1>
         <p className={styles.sub}>
