@@ -35,7 +35,7 @@ export default function Members() {
             rel="noopener noreferrer"
             className={styles.joinLink}
           >
-            参加したい方はこちら →
+            参加したい方はインスタDMまで →
           </a>
         </div>
       </header>

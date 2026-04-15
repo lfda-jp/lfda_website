@@ -17,7 +17,7 @@ export default function Footer() {
           日常の発信はInstagramで →
         </a>
       </div>
-      <p className={styles.copy}>© LFDA 2024</p>
+      <p className={styles.copy}>© LFDA 2025</p>
     </footer>
   )
 }

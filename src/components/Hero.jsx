@@ -5,7 +5,7 @@ export default function Hero() {
     <section id="about" className={styles.hero}>
       {/* 左カラム */}
       <div className={styles.text}>
-        <p className={styles.eyebrow}>Digital Wellbeing Media — Est. 2024</p>
+        <p className={styles.eyebrow}>Digital Wellbeing Media — Est. 2025</p>
         <h1 className={styles.heading}>
           Living Fully in{' '}
           <em className={styles.italic}>Digital Age</em>
