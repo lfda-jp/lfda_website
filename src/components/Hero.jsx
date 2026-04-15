@@ -12,7 +12,8 @@ export default function Hero() {
         </h1>
         <p className={styles.sub}>
           AI時代を生きる若者からのデジタルメディア。
-          アルゴリズムに流されるのではなく、自分でデジタルを再デザインする。
+          アルゴリズムに流されるのではなく、自分でデジタル空間を再デザインする。
+          とめどなく進化するテクノロジーと、うまく生きていく方法を考え続ける。
         </p>
         <a
           href="https://www.instagram.com/fillingyourdigitalwellbeing/"
