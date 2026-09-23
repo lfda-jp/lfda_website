@@ -3,6 +3,5 @@ dist/
 .DS_Store
 *.local
 
-# Member personal data (keep local only)
-src/data/members.js
+# Member photos (keep local only)
 public/members/
