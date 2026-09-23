@@ -19,7 +19,7 @@ export default function App() {
         <Reveal><Hero /></Reveal>
         <Reveal><Pillars /></Reveal>
         <Reveal><Contents /></Reveal>
-        {/* <Members /> */}
+        <Reveal><Members /></Reveal>
         <Reveal><Values /></Reveal>
         <Reveal><Platforms /></Reveal>
         <Reveal><Contact /></Reveal>

@@ -2,3 +2,7 @@ node_modules/
 dist/
 .DS_Store
 *.local
+
+# Member personal data (keep local only)
+src/data/members.js
+public/members/

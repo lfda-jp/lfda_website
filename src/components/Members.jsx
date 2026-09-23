@@ -1,22 +1,54 @@
+import { useState } from 'react'
 import { members } from '../data/members'
 import styles from './Members.module.css'
 
-function Avatar({ member }) {
-  if (member.photo) {
-    return (
-      <img
-        src={`${import.meta.env.BASE_URL}members/${member.photo}`}
-        alt={member.name}
-        className={styles.photo}
-        loading="lazy"
-      />
-    )
-  }
-  const initial = member.name.charAt(0).toUpperCase()
+function FlipCard({ member }) {
+  const [flipped, setFlipped] = useState(false)
+  const initial = member.name.charAt(0)
+
   return (
-    <div className={styles.avatar} aria-hidden="true">
-      {initial}
-    </div>
+    <article
+      className={`${styles.card} ${flipped ? styles.flipped : ''}`}
+      onClick={() => setFlipped(f => !f)}
+      aria-label={`${member.name} — クリックで詳細を表示`}
+    >
+      <div className={styles.inner}>
+        {/* 表面 */}
+        <div className={styles.front}>
+          <div className={styles.frontTop}>
+            {member.photo ? (
+              <img
+                src={`${import.meta.env.BASE_URL}members/${member.photo}`}
+                alt={member.name}
+                className={styles.photo}
+                loading="lazy"
+              />
+            ) : (
+              <div className={styles.avatar}>{initial}</div>
+            )}
+          </div>
+          <div className={styles.frontBottom}>
+            <p className={styles.role}>{member.role}</p>
+            <h3 className={styles.name}>{member.name}</h3>
+            {member.nameEn && <p className={styles.nameEn}>{member.nameEn}</p>}
+            <p className={styles.flipHint}>タップで詳細 →</p>
+          </div>
+        </div>
+
+        {/* 裏面 */}
+        <div className={styles.back}>
+          <div>
+            <p className={styles.backRole}>{member.role}</p>
+            <h3 className={styles.backName}>{member.name}</h3>
+            {member.university && (
+              <p className={styles.backUniv}>{member.university}</p>
+            )}
+          </div>
+          <p className={styles.backBio}>{member.bio}</p>
+          <p className={styles.backHint}>← 戻す</p>
+        </div>
+      </div>
+    </article>
   )
 }
 
@@ -42,13 +74,7 @@ export default function Members() {
 
       <div className={styles.grid}>
         {members.map((m) => (
-          <article key={m.id} className={styles.card}>
-            <Avatar member={m} />
-            <p className={styles.role}>{m.role}</p>
-            <h3 className={styles.name}>{m.name}</h3>
-            {m.nameEn && <p className={styles.nameEn}>{m.nameEn}</p>}
-            <p className={styles.comment}>{m.comment}</p>
-          </article>
+          <FlipCard key={m.id} member={m} />
         ))}
       </div>
     </section>
