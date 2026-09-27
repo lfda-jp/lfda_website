@@ -40,8 +40,8 @@ function FlipCard({ member }) {
           <div>
             <p className={styles.backRole}>{member.role}</p>
             <h3 className={styles.backName}>{member.name}</h3>
-            {member.university && (
-              <p className={styles.backUniv}>{member.university}</p>
+            {member.tagline && (
+              <p className={styles.backTagline}>── {member.tagline}</p>
             )}
           </div>
           <p className={styles.backBio}>{member.bio}</p>
