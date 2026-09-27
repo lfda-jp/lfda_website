@@ -9,7 +9,7 @@ export default function Contents() {
     <section id="contents" className={styles.contents}>
       <header className={styles.header}>
         <h2 className={styles.heading}>Contents</h2>
-        <p className={styles.sub}>LFDAが発信する3つのメディア</p>
+        <p className={styles.sub}>Instagramをハブに、PodcastやNoteを発信</p>
       </header>
       <NoteArticles />
       <PodcastLinks />
