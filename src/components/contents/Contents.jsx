@@ -1,6 +1,7 @@
 import NoteArticles from './NoteArticles'
 import PodcastLinks from './PodcastLinks'
 import Reels from './Reels'
+import Posts from './Posts'
 import styles from './Contents.module.css'
 
 export default function Contents() {
@@ -13,6 +14,7 @@ export default function Contents() {
       <NoteArticles />
       <PodcastLinks />
       <Reels />
+      <Posts />
     </section>
   )
 }

@@ -1,0 +1,170 @@
+.posts {
+  background: var(--ink);
+  border-top: 1px solid #333;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 2.5rem 3rem 1.75rem;
+}
+
+.eyebrow {
+  font-family: var(--font-jp);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--paper);
+  line-height: 1;
+}
+
+.arrows {
+  display: flex;
+  gap: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #444;
+  color: var(--paper);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.arrow:hover {
+  border-color: var(--paper);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Scrollable track */
+.track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 3rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border-top: 1px solid #333;
+  padding: 1.5rem 3rem 2rem;
+  gap: 12px;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card — Instagram square/portrait post ratio */
+.card {
+  flex: 0 0 calc(22% - 1rem);
+  aspect-ratio: 4 / 5;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  display: block;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .thumb {
+  transform: scale(1.04);
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: #222;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 55%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem 1rem;
+  gap: 0.3rem;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.sub {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.caption {
+  font-family: var(--font-jp);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .card {
+    flex: 0 0 calc(38% - 1rem);
+  }
+
+  .track {
+    padding: 1.25rem 1.5rem 1.75rem;
+    scroll-padding-left: 1.5rem;
+  }
+
+  .header {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .overlay {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    flex: 0 0 calc(68% - 1rem);
+  }
+
+  .track {
+    padding: 1rem 1.25rem 1.5rem;
+    scroll-padding-left: 1.25rem;
+  }
+
+  .header {
+    padding: 1.75rem 1.25rem 1.25rem;
+  }
+
+  .overlay {
+    opacity: 1;
+  }
+}
