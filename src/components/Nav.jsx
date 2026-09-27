@@ -27,13 +27,14 @@ export default function Nav() {
   const activeId = useActiveSection(SECTION_IDS)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [overHero, setOverHero] = useState(true)
+  const [overHero, setOverHero] = useState(false)
 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
       setScrolled(y > 8)
-      setOverHero(y < window.innerHeight * 0.85)
+      // 64px = nav height: hero scrolls under nav only after y > 64
+      setOverHero(y > 64 && y < window.innerHeight * 0.85)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
