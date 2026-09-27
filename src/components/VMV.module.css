@@ -18,32 +18,6 @@
   min-height: 50vh;
 }
 
-/* 装飾ブロブ影 — 左下 */
-.vision::before {
-  content: '';
-  position: absolute;
-  bottom: -8rem;
-  left: -8rem;
-  width: 32rem;
-  height: 32rem;
-  border-radius: 40% 60% 70% 30% / 50% 40% 60% 50%;
-  background: rgba(0, 0, 0, 0.04);
-  pointer-events: none;
-}
-
-/* 装飾ブロブ影 — 右上 */
-.vision::after {
-  content: '';
-  position: absolute;
-  top: -6rem;
-  right: -6rem;
-  width: 24rem;
-  height: 24rem;
-  border-radius: 60% 40% 30% 70% / 40% 60% 40% 60%;
-  background: rgba(0, 0, 0, 0.03);
-  pointer-events: none;
-}
-
 .label {
   font-family: var(--font-jp);
   font-size: 0.65rem;
@@ -66,6 +40,19 @@
   z-index: 1;
 }
 
+/* Vision 3D ブロブ — 右側にはみ出す */
+.blobVision {
+  position: absolute;
+  right: -8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(300px, 48vh, 520px);
+  height: clamp(300px, 48vh, 520px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.58;
+}
+
 /* ── Mission ── */
 .mission {
   position: relative;
@@ -78,31 +65,6 @@
   background: var(--ink);
   overflow: hidden;
   min-height: 50vh;
-}
-
-/* 装飾ブロブ影 — ダーク版 */
-.mission::before {
-  content: '';
-  position: absolute;
-  top: -6rem;
-  left: -6rem;
-  width: 28rem;
-  height: 28rem;
-  border-radius: 50% 30% 60% 40% / 40% 60% 30% 70%;
-  background: rgba(255, 255, 255, 0.03);
-  pointer-events: none;
-}
-
-.mission::after {
-  content: '';
-  position: absolute;
-  bottom: -8rem;
-  right: -5rem;
-  width: 30rem;
-  height: 30rem;
-  border-radius: 30% 70% 40% 60% / 60% 30% 70% 40%;
-  background: rgba(255, 255, 255, 0.02);
-  pointer-events: none;
 }
 
 .labelDark {
@@ -127,10 +89,30 @@
   z-index: 1;
 }
 
+/* Mission 3D ブロブ — 左側にはみ出す */
+.blobMission {
+  position: absolute;
+  left: -8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(300px, 48vh, 520px);
+  height: clamp(300px, 48vh, 520px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.48;
+}
+
 @media (max-width: 900px) {
   .vision,
   .mission {
     padding: 6rem 3rem;
+  }
+
+  .blobVision,
+  .blobMission {
+    width: clamp(240px, 40vh, 380px);
+    height: clamp(240px, 40vh, 380px);
+    opacity: 0.4;
   }
 }
 
@@ -139,5 +121,20 @@
   .mission {
     padding: 5rem 1.5rem;
     min-height: 40vh;
+  }
+
+  .blobVision {
+    right: -6rem;
+  }
+
+  .blobMission {
+    left: -6rem;
+  }
+
+  .blobVision,
+  .blobMission {
+    width: clamp(200px, 60vw, 300px);
+    height: clamp(200px, 60vw, 300px);
+    opacity: 0.35;
   }
 }
