@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { members } from '../data/members'
 import styles from './Members.module.css'
 
@@ -17,7 +18,7 @@ function MemberModal({ member, onClose }) {
     }
   }, [onClose])
 
-  return (
+  return createPortal(
     <div className={styles.backdrop} onClick={onClose}>
       <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
         <button className={styles.sheetClose} onClick={onClose} aria-label="閉じる">✕</button>
@@ -46,7 +47,8 @@ function MemberModal({ member, onClose }) {
 
         <p className={styles.sheetBio}>{member.bio}</p>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 
