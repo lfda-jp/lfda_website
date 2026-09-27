@@ -1,8 +1,8 @@
 export const reels = [
   {
     id: 1,
-    thumbnail: null,
-    caption: '広告とAI — 我々の「注意」は誰のもの？',
-    url: 'https://www.instagram.com/fillingyourdigitalwellbeing/',
+    thumbnail: 'retro.jpg',
+    caption: 'アルゴリズムなしで、本物の友達と。次のSNS「Retro」を語る',
+    url: 'https://www.instagram.com/reel/DcyPJEZgUv0/',
   },
 ]
