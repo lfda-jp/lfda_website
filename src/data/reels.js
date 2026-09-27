@@ -1,5 +1,19 @@
 export const reels = [
   {
+    id: 101,
+    thumbnail: 'vision1.jpg',
+    caption: 'LFDAって何をしているの？ — 編集長みちが、私たちのビジョンを語る',
+    url: 'https://www.instagram.com/reel/Db7yyFPgd62/',
+    featured: true,
+  },
+  {
+    id: 102,
+    thumbnail: 'vision2.jpg',
+    caption: 'noteとPodcast、LFDAが届けたいこと — 発信の裏側と想い',
+    url: 'https://www.instagram.com/reel/Db400Q2gdFV/',
+    featured: true,
+  },
+  {
     id: 1,
     thumbnail: 'retro.jpg',
     caption: 'アルゴリズムなしで、本物の友達と。次のSNS「Retro」を語る',
