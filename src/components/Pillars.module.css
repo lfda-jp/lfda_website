@@ -305,7 +305,7 @@
   z-index: 500;
   display: flex;
   align-items: flex-end;
-  animation: backdropIn 0.22s ease;
+  animation: backdropIn 0.22s ease forwards;
 }
 
 @keyframes backdropIn {
@@ -352,7 +352,7 @@
     max-width: 580px;
     max-height: 80svh;
     border-radius: 20px;
-    animation: sheetPop 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+    animation: sheetPop 0.28s cubic-bezier(0.32, 0.72, 0, 1) forwards;
   }
 
   .sheet::before {
@@ -361,8 +361,16 @@
 }
 
 @keyframes sheetPop {
-  from { transform: scale(0.95) translateY(8px); opacity: 0; }
+  from { transform: scale(0.93) translateY(12px); opacity: 0; }
   to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop, .sheet {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .sheetClose {

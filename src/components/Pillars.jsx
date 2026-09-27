@@ -120,6 +120,8 @@ export default function Pillars() {
   const [active, setActive] = useState(0)
   const [selectedPillar, setSelectedPillar] = useState(null)
 
+  const handleClose = useCallback(() => setSelectedPillar(null), [])
+
   const scrollTo = (i) => {
     const track = trackRef.current
     if (!track) return
@@ -183,7 +185,7 @@ export default function Pillars() {
       {selectedPillar && (
         <PillarModal
           pillar={selectedPillar}
-          onClose={() => setSelectedPillar(null)}
+          onClose={handleClose}
         />
       )}
     </section>
