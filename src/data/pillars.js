@@ -7,6 +7,13 @@ export const pillars = [
     tagline: '明日から試せる、デジタルとの付き合い方。',
     body: '毎日の悩みを、ツールで解決する。日常の具体的な課題に対し、実用的なデジタルツールやワークフローを提案するシリーズ。',
     description: '日常のデジタル生活で生じる小さなストレスを、実際に自分たちで試した方法で解きほぐす企画。タブが増えすぎるブラウザの整理、続かないタスク管理、AIを何から触ればいいか分からない状態、そして試験期間のデジタルデトックス。読んだその日から真似できる具体的なワークフローを届けます。',
+    links: [
+      { type: 'note', title: 'ブラウザのtab整理の最適解を模索する（Second Brain, Arc, OneTab, Workna）', url: 'https://note.com/genial_iris250/n/n357d500ab693' },
+      { type: 'podcast', title: '「いつかやる」をゴミ箱にしない方法、SNSの誘惑断ちアプリ', url: 'https://listen.style/p/lfda_digitalwellbeing/4i5kn1ez' },
+      { type: 'podcast', title: 'AI初心者がおすすめツールを聞いてみた', url: 'https://listen.style/p/lfda_digitalwellbeing/qdiwfbhh' },
+      { type: 'podcast', title: '【AI初心者回②】まずは行動と思考を書き残す！？', url: 'https://listen.style/p/lfda_digitalwellbeing/4iukdfgp' },
+      { type: 'podcast', title: '試験とテクノロジー｜デジタルデトックスしながらAIを使い倒す', url: 'https://listen.style/p/lfda_digitalwellbeing/qjgrfwzf' },
+    ],
   },
   {
     id: 2,
@@ -16,6 +23,16 @@ export const pillars = [
     tagline: '話題の技術を、学生が実際に触ってみた。',
     body: '知らなかったことを、知りたくなる。注目のツール・アプリ・テックトレンドを、実際に体験しながら深掘りするシリーズ。',
     description: '注目のツール・アプリ・テックトレンドを、レビューを読むだけで終わらせず自分たちで体験して深掘りする企画。Claude Code を触ってみた記録、身体を持ちはじめた Physical AI、次世代SNS、ノートアプリの新潮流、そしてデバイス選びの試行錯誤まで。専門家ではない私たちが感じた「わかりにくさ」も含めて正直に書きます。',
+    links: [
+      { type: 'podcast', title: '【実際どんなもんじゃい】僕らのClaude Codeの遊び方', url: 'https://listen.style/p/lfda_digitalwellbeing/rplzvlvw' },
+      { type: 'podcast', title: 'Physical AIが進みすぎている！！', url: 'https://listen.style/p/lfda_digitalwellbeing/1pkkcgyk' },
+      { type: 'podcast', title: '【次世代SNS】BlueSky、BeReal、Retroを大学生が実際に使って深掘り', url: 'https://listen.style/p/lfda_digitalwellbeing/bshrljql' },
+      { type: 'podcast', title: '記録の意義とは？リンク型思考Obsidian, ノートアプリの新潮流', url: 'https://listen.style/p/lfda_digitalwellbeing/pixsazxn' },
+      { type: 'note', title: '情報に溺れない記録哲学、Obsidian入門', url: 'https://note.com/genial_iris250/n/ne51b3e8b8ee6' },
+      { type: 'podcast', title: '今注目すべきメディアPodcastについて語る', url: 'https://listen.style/p/lfda_digitalwellbeing/iief1ewu' },
+      { type: 'podcast', title: '【ガジェット回】iPhone乗り換え、そろそろアリ？', url: 'https://listen.style/p/lfda_digitalwellbeing/dwtxemfy' },
+      { type: 'podcast', title: '速すぎるAIの波に乗りたい学生が、2025年を振り返る', url: 'https://listen.style/p/lfda_digitalwellbeing/lcqrunnn' },
+    ],
   },
   {
     id: 3,
@@ -25,6 +42,15 @@ export const pillars = [
     tagline: 'LFDAをやっている学生たちの、等身大の声。',
     body: '編集部の、頭の中。AIには生成できない、人間の声と温度をそのまま届けるPodcastシリーズ。',
     description: '技術の話の前に、それを使っている人がいます。ハッカソンで見た同世代のつくるもの、文系から理系大学院への院試とテクノロジー、研究する仲間との対話、そしてなぜこのメディアを始めたのか。メンバーが何にワクワクし、何に戸惑っているかを、そのまま残しています。',
+    links: [
+      { type: 'podcast', title: '【2026年、若者は何を作る？】ハッカソンに参加して考えたこと', url: 'https://listen.style/p/lfda_digitalwellbeing/digpynfe' },
+      { type: 'podcast', title: '試験とテクノロジー｜デジタルデトックスしながらAIを使い倒す', url: 'https://listen.style/p/lfda_digitalwellbeing/qjgrfwzf' },
+      { type: 'podcast', title: 'ゲスト回① 認知とテクノロジーの交差点（Satorien, Renya）', url: 'https://listen.style/p/lfda_digitalwellbeing/bd3fhzg3' },
+      { type: 'podcast', title: 'ゲスト回② 認知とテクノロジーの交差点（Satorien, Renya）', url: 'https://listen.style/p/lfda_digitalwellbeing/nwqqq6j2' },
+      { type: 'podcast', title: '結局、LFDAって何？このメディアは何を目指してるの？', url: 'https://listen.style/p/lfda_digitalwellbeing/8fvyook4' },
+      { type: 'note', title: 'LFDAについて', url: 'https://note.com/genial_iris250/n/ndf621cbac6da' },
+      { type: 'note', title: '理念', url: 'https://note.com/genial_iris250/n/n6cfc89f66b35' },
+    ],
   },
   {
     id: 4,
@@ -34,5 +60,11 @@ export const pillars = [
     tagline: 'すぐに答えの出ない問いを、じっくり考える。',
     body: '疑問を深掘りする。立ち止まり、多角的に考える機会を作る。テクノロジーと社会の関係を、一緒に考える。',
     description: 'AI時代における社会構造そのものへの問いかけ。流れて消費されるデジタル環境にただ従うのではなく、「なぜこの仕組みが存在し、私たちは何を手放しているのか」を、技術・法・思想のあいだを行き来しながら考えます。結論を急がず、読んだ人が自分で考え続けられる問いを置いていきます。',
+    links: [
+      { type: 'note', title: '［AI&広告］あなたのAIに広告が入る日。Chromeと独占禁止法、AIと広告モデル、アテンションエコノミー', url: 'https://note.com/genial_iris250/n/n7ed4a830e195' },
+      { type: 'podcast', title: 'AIの回答に広告が入る日。我々の「注意」は誰のもの？', url: 'https://listen.style/p/lfda_digitalwellbeing/lpxohhqe' },
+      { type: 'podcast', title: '【万能AIが来る時代をどう生きるか】弱いロボットについて', url: 'https://listen.style/p/lfda_digitalwellbeing/r1ojnwbj' },
+      { type: 'podcast', title: '【AI初心者回②】イリイチ／キットラーと主体性のパート', url: 'https://listen.style/p/lfda_digitalwellbeing/4iukdfgp' },
+    ],
   },
 ]

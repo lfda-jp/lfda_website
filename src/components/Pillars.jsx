@@ -32,6 +32,35 @@ function PillarModal({ pillar, onClose }) {
         )}
 
         <p className={styles.sheetDesc}>{pillar.description}</p>
+
+        {pillar.links && pillar.links.length > 0 && (
+          <div className={styles.timelineSection}>
+            <p className={styles.timelineHeading}>コンテンツ一覧</p>
+            <div className={styles.timeline}>
+              {pillar.links.map((link, i) => (
+                <a
+                  key={i}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.timelineItem}
+                >
+                  <div className={styles.timelineLeft}>
+                    <span className={`${styles.timelineDot} ${link.type === 'podcast' ? styles.timelineDotPod : styles.timelineDotNote}`}>
+                      {link.type === 'podcast' ? '🎙' : 'N'}
+                    </span>
+                    {i < pillar.links.length - 1 && <div className={styles.timelineLine} />}
+                  </div>
+                  <div className={styles.timelineBody}>
+                    <span className={styles.timelineType}>{link.type === 'podcast' ? 'Podcast' : 'note'}</span>
+                    <span className={styles.timelineTitle}>{link.title}</span>
+                  </div>
+                  <span className={styles.timelineArrow}>→</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>,
     document.body
