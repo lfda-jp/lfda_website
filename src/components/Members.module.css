@@ -37,9 +37,14 @@
   font-family: var(--font-jp);
   font-size: 0.65rem;
   letter-spacing: 0.1em;
-  color: var(--accent);
-  border-bottom: 1px solid var(--accent);
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
   padding-bottom: 1px;
+  transition: opacity 0.2s;
+}
+
+.joinLink:hover {
+  opacity: 0.5;
 }
 
 /* Grid */
@@ -133,7 +138,7 @@
   font-size: 0.6rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--muted);
   margin-bottom: 0.2rem;
 }
 
@@ -178,7 +183,7 @@
   font-size: 0.6rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: rgba(240, 237, 230, 0.4);
   margin-bottom: 0.2rem;
 }
 
@@ -254,4 +259,162 @@
   .flipHint {
     opacity: 1;
   }
+
+  /* モバイルではフリップ無効・タップヒントに変更 */
+  .card {
+    cursor: pointer;
+  }
+
+  .flipped .inner {
+    transform: none;
+  }
+}
+
+/* ── モーダル（ボトムシート） ── */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 500;
+  display: flex;
+  align-items: flex-end;
+  animation: backdropIn 0.22s ease;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.sheet {
+  width: 100%;
+  max-height: 85svh;
+  background: var(--ink);
+  border-radius: 20px 20px 0 0;
+  padding: 1.75rem 1.5rem 3rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  animation: sheetUp 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  position: relative;
+}
+
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* ドラッグハンドル */
+.sheet::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 4px;
+  background: rgba(240, 237, 230, 0.2);
+  border-radius: 2px;
+  margin: 0 auto 1.5rem;
+}
+
+.sheetClose {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 237, 230, 0.2);
+  background: transparent;
+  color: rgba(240, 237, 230, 0.6);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.sheetClose:hover {
+  background: rgba(240, 237, 230, 0.08);
+}
+
+.sheetHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.sheetAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(240, 237, 230, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--paper);
+  flex-shrink: 0;
+}
+
+.sheetPhoto {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.sheetMeta {
+  min-width: 0;
+}
+
+.sheetRole {
+  font-family: var(--font-jp);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(240, 237, 230, 0.4);
+  margin-bottom: 0.2rem;
+}
+
+.sheetName {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--paper);
+  line-height: 1.1;
+}
+
+.sheetNameEn {
+  font-family: var(--font-jp);
+  font-size: 0.65rem;
+  color: rgba(240, 237, 230, 0.4);
+  margin-top: 0.15rem;
+}
+
+.sheetUni {
+  font-family: var(--font-jp);
+  font-size: 0.7rem;
+  color: rgba(240, 237, 230, 0.5);
+  margin-top: 0.2rem;
+}
+
+.sheetTagline {
+  font-family: var(--font-jp);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: rgba(240, 237, 230, 0.65);
+  font-style: italic;
+  border-left: 2px solid rgba(240, 237, 230, 0.15);
+  padding-left: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.sheetBio {
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: rgba(240, 237, 230, 0.75);
 }

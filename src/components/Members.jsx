@@ -1,15 +1,71 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { members } from '../data/members'
 import styles from './Members.module.css'
 
-function FlipCard({ member }) {
+const BASE = import.meta.env.BASE_URL
+
+function MemberModal({ member, onClose }) {
+  const initial = member.name.charAt(0)
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose() }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [onClose])
+
+  return (
+    <div className={styles.backdrop} onClick={onClose}>
+      <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
+        <button className={styles.sheetClose} onClick={onClose} aria-label="閉じる">✕</button>
+
+        <div className={styles.sheetHeader}>
+          {member.photo ? (
+            <img
+              src={`${BASE}members/${member.photo}`}
+              alt={member.name}
+              className={styles.sheetPhoto}
+            />
+          ) : (
+            <div className={styles.sheetAvatar}>{initial}</div>
+          )}
+          <div className={styles.sheetMeta}>
+            <p className={styles.sheetRole}>{member.role}</p>
+            <h3 className={styles.sheetName}>{member.name}</h3>
+            {member.nameEn && <p className={styles.sheetNameEn}>{member.nameEn}</p>}
+            {member.university && <p className={styles.sheetUni}>{member.university}</p>}
+          </div>
+        </div>
+
+        {member.tagline && (
+          <p className={styles.sheetTagline}>── {member.tagline}</p>
+        )}
+
+        <p className={styles.sheetBio}>{member.bio}</p>
+      </div>
+    </div>
+  )
+}
+
+function FlipCard({ member, onSelect }) {
   const [flipped, setFlipped] = useState(false)
   const initial = member.name.charAt(0)
+
+  const handleClick = () => {
+    if (window.matchMedia('(max-width: 600px)').matches) {
+      onSelect(member)
+    } else {
+      setFlipped((f) => !f)
+    }
+  }
 
   return (
     <article
       className={`${styles.card} ${flipped ? styles.flipped : ''}`}
-      onClick={() => setFlipped(f => !f)}
+      onClick={handleClick}
       aria-label={`${member.name} — クリックで詳細を表示`}
     >
       <div className={styles.inner}>
@@ -18,7 +74,7 @@ function FlipCard({ member }) {
           <div className={styles.frontTop}>
             {member.photo ? (
               <img
-                src={`${import.meta.env.BASE_URL}members/${member.photo}`}
+                src={`${BASE}members/${member.photo}`}
                 alt={member.name}
                 className={styles.photo}
                 loading="lazy"
@@ -53,6 +109,8 @@ function FlipCard({ member }) {
 }
 
 export default function Members() {
+  const [selectedMember, setSelectedMember] = useState(null)
+
   return (
     <section id="members" className={styles.members}>
       <header className={styles.header}>
@@ -74,9 +132,16 @@ export default function Members() {
 
       <div className={styles.grid}>
         {members.map((m) => (
-          <FlipCard key={m.id} member={m} />
+          <FlipCard key={m.id} member={m} onSelect={setSelectedMember} />
         ))}
       </div>
+
+      {selectedMember && (
+        <MemberModal
+          member={selectedMember}
+          onClose={() => setSelectedMember(null)}
+        />
+      )}
     </section>
   )
 }
