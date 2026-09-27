@@ -25,26 +25,25 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  gap: 12px;
+  padding: 0 2rem 2.5rem;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 2.5rem 2rem;
-  border-right: 1px solid var(--rule);
-  border-top: 2px solid transparent;
+  padding: 2rem 1.75rem;
+  border-radius: 16px;
+  background: var(--cream);
+  border: 1px solid var(--rule);
   color: var(--ink);
-  transition: border-top-color 0.2s, transform 0.2s;
-}
-
-.card:last-child {
-  border-right: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .card:hover {
-  border-top-color: var(--ink);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
   transform: translateY(-3px);
 }
 
@@ -79,15 +78,7 @@
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .card:nth-child(2n) {
-    border-right: none;
-  }
-
-  .card:nth-child(1),
-  .card:nth-child(2) {
-    border-bottom: 1px solid var(--rule);
+    padding: 0 1.5rem 2rem;
   }
 }
 
@@ -100,7 +91,12 @@
     font-size: 2rem;
   }
 
+  .grid {
+    padding: 0 1rem 1.5rem;
+    gap: 10px;
+  }
+
   .card {
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem 1.25rem;
   }
 }

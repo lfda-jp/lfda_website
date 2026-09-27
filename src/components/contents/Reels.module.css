@@ -61,8 +61,8 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   border-top: 1px solid #333;
-  padding: 0 3rem;
-  gap: 1px;
+  padding: 1.5rem 3rem 2rem;
+  gap: 12px;
 }
 
 .track::-webkit-scrollbar {
@@ -71,13 +71,14 @@
 
 /* Card */
 .card {
-  flex: 0 0 calc(25% - 0.75rem);
+  flex: 0 0 calc(25% - 1.25rem);
   aspect-ratio: 9 / 16;
   scroll-snap-align: start;
   position: relative;
   overflow: hidden;
-  border: 1px solid #333;
+  border-radius: 20px;
   display: block;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
 }
 
 .thumb {
@@ -156,7 +157,7 @@
   }
 
   .track {
-    padding: 0 1.5rem;
+    padding: 1.25rem 1.5rem 1.75rem;
     scroll-padding-left: 1.5rem;
   }
 
@@ -171,7 +172,7 @@
   }
 
   .track {
-    padding: 0 1.25rem;
+    padding: 1rem 1.25rem 1.5rem;
     scroll-padding-left: 1.25rem;
   }
 

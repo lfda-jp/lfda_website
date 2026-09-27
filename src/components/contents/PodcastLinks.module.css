@@ -29,12 +29,15 @@
   gap: 0.5rem;
   padding: 1.5rem;
   border: 1px solid var(--rule);
+  border-radius: 16px;
   background: var(--paper);
-  transition: border-color 0.2s;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .card:hover {
-  border-color: var(--brand, var(--ink));
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
 }
 
 .platform {

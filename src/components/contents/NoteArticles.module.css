@@ -35,6 +35,7 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--cream);
+  border-radius: 12px;
 }
 
 .thumb img {
