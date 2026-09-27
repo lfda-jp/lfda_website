@@ -1,86 +1,269 @@
 .pillars {
-  padding: 4rem;
   border-bottom: 1px solid var(--rule);
-  background: var(--cream);
+  background: var(--paper);
+  overflow: hidden;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+/* ヘッダー */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 3rem 3rem 2rem;
 }
 
+.headerLeft {}
+
+.eyebrow {
+  font-family: var(--font-jp);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ドット進捗 */
+.dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+  padding: 0;
+}
+
+.dotActive {
+  background: var(--ink);
+  transform: scale(1.5);
+}
+
+/* 矢印ボタン */
+.arrows {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.arrow {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: transparent;
+  font-size: 0.9rem;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.arrow:hover {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+/* ── スクロールトラック ── */
+.track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 3rem;
+  padding: 0 3rem 3rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── カード ── */
 .card {
-  padding: 2.5rem 2rem;
-  border-right: 1px solid var(--rule);
+  flex: 0 0 calc(42% - 0.75rem);
+  min-height: 60vh;
+  scroll-snap-align: start;
+  border-radius: 24px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+
+  /* 3D tilt */
+  --rx: 0deg;
+  --ry: 0deg;
+  transform: perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.15s ease-out, box-shadow 0.2s;
+  will-change: transform;
+}
+
+.card:hover {
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.14);
+}
+
+/* カード別カラー */
+.c1 { background: #ede9df; }
+.c2 { background: #dfe8e4; }
+.c3 { background: #e8dfe3; }
+.c4 { background: #dfe2e8; }
+
+/* ── CSS 3D ブロブ ── */
+.blobWrap {
+  position: absolute;
+  top: -4rem;
+  right: -4rem;
+  width: 20rem;
+  height: 20rem;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  inset: 0;
+  border-radius: 40% 60% 70% 30% / 50% 40% 60% 50%;
+  animation: morph 8s ease-in-out infinite;
+  filter: blur(2px);
+}
+
+.c1 .blob { background: radial-gradient(ellipse at 40% 40%, #c8c4b8 0%, #a8a49a 50%, transparent 80%); }
+.c2 .blob { background: radial-gradient(ellipse at 40% 40%, #b4ccc4 0%, #8aada4 50%, transparent 80%); }
+.c3 .blob { background: radial-gradient(ellipse at 40% 40%, #ccb8be 0%, #ad9098 50%, transparent 80%); }
+.c4 .blob { background: radial-gradient(ellipse at 40% 40%, #b4bccc 0%, #8a96ad 50%, transparent 80%); }
+
+/* 光沢ハイライト */
+.blobReflect {
+  position: absolute;
+  width: 6rem;
+  height: 3rem;
+  top: 3rem;
+  left: 4rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  filter: blur(8px);
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 40% 60% 70% 30% / 50% 40% 60% 50%; }
+  25%       { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; }
+  50%       { border-radius: 50% 50% 30% 70% / 60% 40% 70% 30%; }
+  75%       { border-radius: 30% 70% 60% 40% / 40% 70% 30% 60%; }
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  50%       { transform: translate(2rem, -1rem) scale(1.2); opacity: 0.3; }
+}
+
+/* ── コンテンツ ── */
+.content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-}
-
-.card:last-child {
-  border-right: none;
+  margin-top: auto;
 }
 
 .series {
   font-family: var(--font-jp);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
-.emoji {
-  margin-right: 0.25rem;
-}
-
 .title {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.2;
   color: var(--ink);
 }
 
 .body {
   font-family: var(--font-jp);
-  font-size: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.85;
   color: var(--muted);
-  line-height: 1.8;
+  max-width: 28ch;
+}
+
+/* 大きな装飾数字 */
+.bigNo {
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.06);
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
 }
 
 @media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  .card {
+    flex: 0 0 calc(70% - 0.75rem);
+    min-height: 55vh;
   }
 
-  .card:nth-child(2n) {
-    border-right: none;
+  .header {
+    padding: 2.5rem 1.5rem 1.5rem;
   }
 
-  .card:nth-child(3),
-  .card:nth-child(4) {
-    border-top: 1px solid var(--rule);
+  .track {
+    padding: 0 1.5rem 2.5rem;
+    scroll-padding-inline: 1.5rem;
   }
 }
 
 @media (max-width: 600px) {
-  .pillars {
-    padding: 2.5rem 1.5rem;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
   .card {
-    border-right: none;
-    border-top: none;
-    border-bottom: 1px solid var(--rule);
-    padding: 2rem 0;
+    flex: 0 0 calc(85% - 0.75rem);
+    min-height: 50vh;
+    padding: 2rem;
   }
 
-  .card:last-child {
-    border-bottom: none;
+  .blobWrap {
+    width: 14rem;
+    height: 14rem;
+  }
+
+  .bigNo {
+    font-size: 3.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
   }
 }
