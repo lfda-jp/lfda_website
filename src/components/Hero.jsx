@@ -1,4 +1,5 @@
 import styles from './Hero.module.css'
+import BlobCanvas from './BlobCanvas'
 
 export default function Hero() {
   return (
@@ -23,13 +24,9 @@ export default function Hero() {
         </a>
       </div>
 
-      {/* 右カラム */}
+      {/* 右カラム — リキッドクロームブロブ */}
       <div className={styles.visual}>
-        <img
-          src={import.meta.env.BASE_URL + 'lfda_logo.png'}
-          alt="LFDA"
-          className={styles.logoMark}
-        />
+        <BlobCanvas className={styles.blobCanvas} />
       </div>
     </section>
   )
