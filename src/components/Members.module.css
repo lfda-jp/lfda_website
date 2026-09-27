@@ -47,7 +47,7 @@
   opacity: 0.5;
 }
 
-/* Grid */
+/* ── Grid ── */
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -55,65 +55,38 @@
   padding: 1.5rem 2rem 2rem;
 }
 
-/* Flip card shell */
+/* ── Card ── */
 .card {
   aspect-ratio: 3 / 4;
-  perspective: 900px;
   cursor: pointer;
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: var(--cream);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition: box-shadow 0.25s, transform 0.25s;
 }
 
 .card:hover {
   box-shadow: 0 10px 36px rgba(0, 0, 0, 0.14);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
-.inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.flipped .inner {
-  transform: rotateY(180deg);
-}
-
-/* Front & Back shared */
-.front,
-.back {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  padding: 1.5rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  border-radius: 20px;
-}
-
-/* Front */
-.front {
-  background: var(--cream);
-  justify-content: space-between;
-}
-
-.frontTop {
+.cardTop {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .photo {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute;
-  inset: 0;
 }
 
 .avatar {
@@ -129,8 +102,10 @@
   color: var(--cream);
 }
 
-.frontBottom {
+.cardBottom {
   flex: 0 0 auto;
+  padding: 1.25rem;
+  background: var(--cream);
 }
 
 .role {
@@ -157,74 +132,21 @@
   margin-top: 0.15rem;
 }
 
-.flipHint {
+.hint {
   font-family: var(--font-jp);
   font-size: 0.6rem;
   letter-spacing: 0.05em;
   color: var(--muted);
-  margin-top: 0.75rem;
+  margin-top: 0.6rem;
   opacity: 0;
   transition: opacity 0.2s;
 }
 
-.card:hover .flipHint {
+.card:hover .hint {
   opacity: 1;
 }
 
-/* Back */
-.back {
-  background: var(--ink);
-  transform: rotateY(180deg);
-  justify-content: space-between;
-}
-
-.backRole {
-  font-family: var(--font-jp);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(240, 237, 230, 0.4);
-  margin-bottom: 0.2rem;
-}
-
-.backName {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: var(--cream);
-  line-height: 1.1;
-}
-
-.backTagline {
-  font-family: var(--font-jp);
-  font-size: 0.72rem;
-  line-height: 1.6;
-  color: var(--cream);
-  margin-top: 0.6rem;
-  letter-spacing: 0.02em;
-}
-
-.backBio {
-  font-family: var(--font-jp);
-  font-size: 0.8rem;
-  line-height: 1.8;
-  color: #bbb;
-  flex: 1;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 7;
-  -webkit-box-orient: vertical;
-  margin: 0.75rem 0;
-}
-
-.backHint {
-  font-family: var(--font-jp);
-  font-size: 0.6rem;
-  letter-spacing: 0.05em;
-  color: #555;
-}
-
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 900px) {
   .header {
     padding: 2.5rem 2rem 1.5rem;
@@ -256,21 +178,12 @@
     gap: 10px;
   }
 
-  .flipHint {
+  .hint {
     opacity: 1;
-  }
-
-  /* モバイルではフリップ無効・タップヒントに変更 */
-  .card {
-    cursor: pointer;
-  }
-
-  .flipped .inner {
-    transform: none;
   }
 }
 
-/* ── モーダル（ボトムシート） ── */
+/* ── モーダル: モバイル = ボトムシート ── */
 .backdrop {
   position: fixed;
   inset: 0;
@@ -288,7 +201,7 @@
 
 .sheet {
   width: 100%;
-  max-height: 85svh;
+  max-height: 88svh;
   background: var(--ink);
   border-radius: 20px 20px 0 0;
   padding: 1.75rem 1.5rem 3rem;
@@ -303,7 +216,7 @@
   to   { transform: translateY(0); }
 }
 
-/* ドラッグハンドル */
+/* ドラッグハンドル（モバイル用） */
 .sheet::before {
   content: '';
   display: block;
@@ -314,6 +227,32 @@
   margin: 0 auto 1.5rem;
 }
 
+/* ── モーダル: デスクトップ = 中央ポップアップ ── */
+@media (min-width: 601px) {
+  .backdrop {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .sheet {
+    max-width: 580px;
+    max-height: 80svh;
+    border-radius: 20px;
+    animation: sheetPop 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .sheet::before {
+    display: none;
+  }
+}
+
+@keyframes sheetPop {
+  from { transform: scale(0.95) translateY(8px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* ── シート内部 ── */
 .sheetClose {
   position: absolute;
   top: 1.25rem;

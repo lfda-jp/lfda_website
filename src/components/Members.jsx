@@ -52,59 +52,32 @@ function MemberModal({ member, onClose }) {
   )
 }
 
-function FlipCard({ member, onSelect }) {
-  const [flipped, setFlipped] = useState(false)
+function MemberCard({ member, onSelect }) {
   const initial = member.name.charAt(0)
-
-  const handleClick = () => {
-    if (window.matchMedia('(max-width: 600px)').matches) {
-      onSelect(member)
-    } else {
-      setFlipped((f) => !f)
-    }
-  }
 
   return (
     <article
-      className={`${styles.card} ${flipped ? styles.flipped : ''}`}
-      onClick={handleClick}
+      className={styles.card}
+      onClick={() => onSelect(member)}
       aria-label={`${member.name} — クリックで詳細を表示`}
     >
-      <div className={styles.inner}>
-        {/* 表面 */}
-        <div className={styles.front}>
-          <div className={styles.frontTop}>
-            {member.photo ? (
-              <img
-                src={`${BASE}members/${member.photo}`}
-                alt={member.name}
-                className={styles.photo}
-                loading="lazy"
-              />
-            ) : (
-              <div className={styles.avatar}>{initial}</div>
-            )}
-          </div>
-          <div className={styles.frontBottom}>
-            <p className={styles.role}>{member.role}</p>
-            <h3 className={styles.name}>{member.name}</h3>
-            {member.nameEn && <p className={styles.nameEn}>{member.nameEn}</p>}
-            <p className={styles.flipHint}>タップで詳細 →</p>
-          </div>
-        </div>
-
-        {/* 裏面 */}
-        <div className={styles.back}>
-          <div>
-            <p className={styles.backRole}>{member.role}</p>
-            <h3 className={styles.backName}>{member.name}</h3>
-            {member.tagline && (
-              <p className={styles.backTagline}>── {member.tagline}</p>
-            )}
-          </div>
-          <p className={styles.backBio}>{member.bio}</p>
-          <p className={styles.backHint}>← 戻す</p>
-        </div>
+      <div className={styles.cardTop}>
+        {member.photo ? (
+          <img
+            src={`${BASE}members/${member.photo}`}
+            alt={member.name}
+            className={styles.photo}
+            loading="lazy"
+          />
+        ) : (
+          <div className={styles.avatar}>{initial}</div>
+        )}
+      </div>
+      <div className={styles.cardBottom}>
+        <p className={styles.role}>{member.role}</p>
+        <h3 className={styles.name}>{member.name}</h3>
+        {member.nameEn && <p className={styles.nameEn}>{member.nameEn}</p>}
+        <p className={styles.hint}>詳細を読む →</p>
       </div>
     </article>
   )
@@ -134,7 +107,7 @@ export default function Members() {
 
       <div className={styles.grid}>
         {members.map((m) => (
-          <FlipCard key={m.id} member={m} onSelect={setSelectedMember} />
+          <MemberCard key={m.id} member={m} onSelect={setSelectedMember} />
         ))}
       </div>
 
