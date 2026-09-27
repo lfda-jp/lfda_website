@@ -25,9 +25,9 @@ export default function Hero() {
       const t = setTimeout(() => {
         let step = 0
         const iv = setInterval(() => {
-          span.textContent = ++step < 13 ? rnd() : final
-          if (step >= 13) clearInterval(iv)
-        }, 38)
+          span.textContent = ++step < 18 ? rnd() : final
+          if (step >= 18) clearInterval(iv)
+        }, 60)
         cleanups.push(() => clearInterval(iv))
       }, delay)
       cleanups.push(() => clearTimeout(t))
@@ -38,7 +38,7 @@ export default function Hero() {
   let ci = 0
   const ch = (c, i, pfx) => {
     if (c === ' ') return <span key={`${pfx}s${i}`}>{' '}</span>
-    const delay = ci++ * 44
+    const delay = ci++ * 72
     return <span key={`${pfx}c${i}`} data-final={c} data-delay={delay}>{c}</span>
   }
 
