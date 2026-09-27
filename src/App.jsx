@@ -3,7 +3,6 @@ import Hero from './components/Hero'
 import Pillars from './components/Pillars'
 import Contents from './components/contents/Contents'
 import Members from './components/Members'
-import VMV from './components/VMV'
 import Values from './components/Values'
 import Platforms from './components/Platforms'
 import Contact from './components/Contact'
@@ -15,8 +14,7 @@ export default function App() {
     <>
       <Nav />
       <main>
-        <Reveal><VMV /></Reveal>
-        <Reveal><Hero /></Reveal>
+        <Hero />
         <Reveal><Pillars /></Reveal>
         <Reveal><Contents /></Reveal>
         <Reveal><Members /></Reveal>

@@ -17,6 +17,49 @@
   z-index: 0;
 }
 
+/* Vision / Mission — 右上固定 */
+.vmv {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 340px;
+  background: rgba(18, 19, 22, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 2rem;
+  pointer-events: none;
+}
+
+.vmvItem {
+  padding: 1rem 0;
+}
+
+.vmvDivider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.vmvLabel {
+  font-family: var(--font-jp);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.6rem;
+}
+
+.vmvText {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+}
+
 /* テキスト: 前面レイヤー */
 .text {
   position: relative;
@@ -81,11 +124,34 @@
   .hero {
     min-height: 85vh;
   }
+
+  .vmv {
+    max-width: 260px;
+    right: 1.5rem;
+    top: 2rem;
+    padding: 1.5rem;
+  }
+
+  .vmvText {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 600px) {
   .hero {
     min-height: 100svh;
+  }
+
+  .vmv {
+    position: relative;
+    top: auto;
+    right: auto;
+    max-width: 100%;
+    border-radius: 0;
+    margin: 0;
+    background: rgba(18, 19, 22, 0.8);
+    padding: 1.5rem;
+    order: -1;
   }
 
   .text {
