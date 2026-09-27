@@ -1,8 +1,44 @@
 import { useRef, useCallback, useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { pillars } from '../data/pillars'
 import styles from './Pillars.module.css'
 
-function PillarCard({ pillar, index }) {
+function PillarModal({ pillar, onClose }) {
+  const isDark = pillar.id % 2 === 0
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose() }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [onClose])
+
+  return createPortal(
+    <div className={styles.backdrop} onClick={onClose}>
+      <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
+        <button className={styles.sheetClose} onClick={onClose} aria-label="閉じる">✕</button>
+
+        <p className={styles.sheetSeries}>{pillar.series}</p>
+        <h3 className={styles.sheetTitle}>
+          {pillar.emoji && <span className={styles.sheetEmoji}>{pillar.emoji}</span>}
+          {pillar.title}
+        </h3>
+
+        {pillar.tagline && (
+          <p className={styles.sheetTagline}>── {pillar.tagline}</p>
+        )}
+
+        <p className={styles.sheetDesc}>{pillar.description}</p>
+      </div>
+    </div>,
+    document.body
+  )
+}
+
+function PillarCard({ pillar, index, onSelect }) {
   const cardRef = useRef(null)
 
   const onMouseMove = useCallback((e) => {
@@ -28,6 +64,7 @@ function PillarCard({ pillar, index }) {
       className={`${styles.card} ${styles[`c${index + 1}`]}`}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
+      onClick={() => onSelect(pillar)}
     >
       {/* CSS 3D blob */}
       <div className={styles.blobWrap}>
@@ -40,6 +77,7 @@ function PillarCard({ pillar, index }) {
         <p className={styles.series}>{pillar.series}</p>
         <h3 className={styles.title}>{pillar.title}</h3>
         <p className={styles.body}>{pillar.body}</p>
+        <p className={styles.hint}>詳細を読む →</p>
       </div>
 
       {/* 大きな装飾数字 */}
@@ -51,6 +89,7 @@ function PillarCard({ pillar, index }) {
 export default function Pillars() {
   const trackRef = useRef(null)
   const [active, setActive] = useState(0)
+  const [selectedPillar, setSelectedPillar] = useState(null)
 
   const scrollTo = (i) => {
     const track = trackRef.current
@@ -108,9 +147,16 @@ export default function Pillars() {
 
       <div className={styles.track} ref={trackRef}>
         {pillars.map((p, i) => (
-          <PillarCard key={p.id} pillar={p} index={i} />
+          <PillarCard key={p.id} pillar={p} index={i} onSelect={setSelectedPillar} />
         ))}
       </div>
+
+      {selectedPillar && (
+        <PillarModal
+          pillar={selectedPillar}
+          onClose={() => setSelectedPillar(null)}
+        />
+      )}
     </section>
   )
 }
