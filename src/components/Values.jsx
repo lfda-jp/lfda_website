@@ -5,17 +5,21 @@ export default function Values() {
   return (
     <section className={styles.values}>
       <header className={styles.header}>
+        <p className={styles.eyebrow}>私たちの行動原則</p>
         <h2 className={styles.heading}>Values</h2>
       </header>
-      <div className={styles.grid}>
+
+      <ol className={styles.list}>
         {values.map((v) => (
-          <article key={v.id} className={styles.card}>
-            <p className={styles.no}>{v.no}</p>
-            <h3 className={styles.title}>{v.title}</h3>
-            <p className={styles.body}>{v.body}</p>
-          </article>
+          <li key={v.id} className={styles.item}>
+            <span className={styles.no}>{v.no}</span>
+            <div className={styles.body}>
+              <h3 className={styles.title}>{v.title}</h3>
+              <p className={styles.desc}>{v.body}</p>
+            </div>
+          </li>
         ))}
-      </div>
+      </ol>
     </section>
   )
 }

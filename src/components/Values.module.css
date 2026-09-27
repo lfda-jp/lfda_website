@@ -1,66 +1,100 @@
 .values {
-  border-bottom: 1px solid var(--rule);
   background: var(--cream);
+  border-bottom: 1px solid var(--rule);
 }
 
 .header {
-  padding: 3rem 4rem 2rem;
+  padding: 4rem 4rem 3rem;
   border-bottom: 1px solid var(--rule);
+}
+
+.eyebrow {
+  font-family: var(--font-jp);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
 }
 
 .heading {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
   color: var(--ink);
+  line-height: 1;
 }
 
-.grid {
+/* エディトリアルリスト */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
-}
-
-.card {
-  padding: 2.5rem 3rem;
-  border-right: 1px solid var(--rule);
+  grid-template-columns: 5rem 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 2.5rem 4rem;
   border-bottom: 1px solid var(--rule);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  transition: background 0.2s;
 }
 
-.card:nth-child(2n) {
-  border-right: none;
-}
-
-.full {
-  grid-column: 1 / -1;
-  border-right: none;
+.item:last-child {
   border-bottom: none;
 }
 
+.item:hover {
+  background: rgba(0, 0, 0, 0.015);
+}
 
 .no {
-  font-family: var(--font-jp);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  color: var(--muted);
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--rule);
+  line-height: 1;
+  user-select: none;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .title {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 400;
   line-height: 1.4;
   color: var(--ink);
 }
 
-.body {
+.desc {
   font-family: var(--font-jp);
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.85;
   color: var(--muted);
+  max-width: 56ch;
+}
+
+@media (max-width: 900px) {
+  .header {
+    padding: 3rem 2rem 2rem;
+  }
+
+  .item {
+    grid-template-columns: 3.5rem 1fr;
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+
+  .no {
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -68,25 +102,13 @@
     padding: 2.5rem 1.5rem 1.5rem;
   }
 
-  .heading {
-    font-size: 2rem;
+  .item {
+    grid-template-columns: 2.5rem 1fr;
+    padding: 1.75rem 1.5rem;
+    gap: 1rem;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
+  .no {
+    font-size: 1.5rem;
   }
-
-  .card {
-    border-right: none;
-    padding: 2rem 1.5rem;
-  }
-
-  .card:nth-child(2n) {
-    border-right: none;
-  }
-
-  .full {
-    grid-column: 1;
-  }
-
 }
