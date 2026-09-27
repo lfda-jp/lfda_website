@@ -56,10 +56,12 @@ export default function Nav() {
           alt="LFDA"
           className={styles.logoImg}
         />
-        <div className={styles.logoWords}>
-          <span className={styles.logoAbbr}>LFDA</span>
-          <span className={styles.logoSub}>Living Fully in Digital Age</span>
-        </div>
+        <span className={styles.logoText}>
+          <span className={styles.logoInitial}>L</span>iving{' '}
+          <span className={styles.logoInitial}>F</span>ully in{' '}
+          <span className={styles.logoInitial}>D</span>igital{' '}
+          <span className={styles.logoInitial}>A</span>ge
+        </span>
       </a>
 
       {/* デスクトップ用タブ */}

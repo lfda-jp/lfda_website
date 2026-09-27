@@ -20,12 +20,8 @@
   background: transparent;
 }
 
-.nav.dark .logoAbbr {
+.nav.dark .logoInitial {
   color: rgba(245, 242, 236, 0.95);
-}
-
-.nav.dark .logoSub {
-  color: rgba(245, 242, 236, 0.35);
 }
 
 .nav.dark .logoText,
@@ -59,42 +55,22 @@
   display: block;
 }
 
-.logoWords {
-  display: flex;
-  flex-direction: column;
-  gap: 0.05rem;
-}
-
-.logoAbbr {
-  font-family: var(--font-serif);
-  font-size: 1.7rem;
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  line-height: 1;
-}
-
-.logoSub {
-  font-family: var(--font-jp);
+.logoText {
+  font-family: var(--font-sans);
   font-size: 0.52rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: var(--muted);
   line-height: 1;
 }
 
-/* 旧 logoText — 後方互換 */
-.logoText {
-  display: none;
+.logoInitial {
+  font-weight: 700;
+  color: var(--ink);
 }
 
 @media (max-width: 900px) {
-  .logoSub {
+  .logoText {
     display: none;
-  }
-
-  .logoAbbr {
-    font-size: 1.5rem;
   }
 }
 
