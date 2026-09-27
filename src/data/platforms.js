@@ -7,6 +7,13 @@ export const platforms = [
     hasIcon: true,
   },
   {
+    id: 'threads',
+    name: 'Threads',
+    url: 'https://www.threads.com/@fillingyourdigitalwellbeing',
+    description: '気になるトピックをつぶやく',
+    hasIcon: true,
+  },
+  {
     id: 'note',
     name: 'note',
     url: 'https://note.com/genial_iris250',

@@ -1,6 +1,6 @@
 import NoteArticles from './NoteArticles'
 import PodcastLinks from './PodcastLinks'
-import InstagramBanner from './InstagramBanner'
+import Reels from './Reels'
 import styles from './Contents.module.css'
 
 export default function Contents() {
@@ -12,7 +12,7 @@ export default function Contents() {
       </header>
       <NoteArticles />
       <PodcastLinks />
-      <InstagramBanner />
+      <Reels />
     </section>
   )
 }
