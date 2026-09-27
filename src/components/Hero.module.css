@@ -16,6 +16,22 @@
   z-index: 0;
 }
 
+/* 左グラデーションオーバーレイ — テキスト可読性確保 */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(26, 26, 24, 0.90) 0%,
+    rgba(26, 26, 24, 0.60) 45%,
+    rgba(26, 26, 24, 0.15) 70%,
+    transparent 100%
+  );
+  z-index: 5;
+  pointer-events: none;
+}
+
 /* テキスト: 前面レイヤー */
 .text {
   position: relative;
