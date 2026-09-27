@@ -57,9 +57,12 @@
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-padding-left: 3rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
   border-top: 1px solid #333;
+  padding: 0 3rem;
+  gap: 1px;
 }
 
 .track::-webkit-scrollbar {
@@ -68,17 +71,13 @@
 
 /* Card */
 .card {
-  flex: 0 0 25%;
+  flex: 0 0 calc(25% - 0.75rem);
   aspect-ratio: 3 / 4;
   scroll-snap-align: start;
   position: relative;
   overflow: hidden;
-  border-right: 1px solid #333;
+  border: 1px solid #333;
   display: block;
-}
-
-.card:last-child {
-  border-right: none;
 }
 
 .thumb {
@@ -153,7 +152,12 @@
 
 @media (max-width: 900px) {
   .card {
-    flex: 0 0 40%;
+    flex: 0 0 calc(40% - 1rem);
+  }
+
+  .track {
+    padding: 0 1.5rem;
+    scroll-padding-left: 1.5rem;
   }
 
   .header {
@@ -163,7 +167,12 @@
 
 @media (max-width: 600px) {
   .card {
-    flex: 0 0 72%;
+    flex: 0 0 calc(72% - 1rem);
+  }
+
+  .track {
+    padding: 0 1.25rem;
+    scroll-padding-left: 1.25rem;
   }
 
   .header {
