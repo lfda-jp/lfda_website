@@ -78,8 +78,8 @@ export default function BlobCanvas({ className }) {
 
     const w = container.clientWidth
     const h = container.clientHeight
-    const camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 100)
-    camera.position.set(0, 0, 5.2)
+    const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100)
+    camera.position.set(0.4, 0.2, 4.8)
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
     renderer.setSize(w, h)

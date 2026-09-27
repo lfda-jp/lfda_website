@@ -24,10 +24,8 @@ export default function Hero() {
         </a>
       </div>
 
-      {/* 右カラム — リキッドクロームブロブ */}
-      <div className={styles.visual}>
-        <BlobCanvas className={styles.blobCanvas} />
-      </div>
+      {/* 背景ブロブ */}
+      <BlobCanvas className={styles.blobCanvas} />
     </section>
   )
 }
