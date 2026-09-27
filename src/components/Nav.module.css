@@ -3,17 +3,39 @@
   top: 0;
   z-index: 100;
   background: var(--paper);
-  border-bottom: 1px solid var(--rule);
   display: flex;
   align-items: center;
-  padding: 0 2rem;
-  height: 68px;
+  padding: 0 2.5rem;
+  height: 64px;
   gap: 2rem;
-  transition: box-shadow 0.3s ease;
+  transition: background 0.4s ease, box-shadow 0.3s ease;
 }
 
 .nav.scrolled {
-  box-shadow: 0 2px 16px rgba(26, 26, 24, 0.08);
+  box-shadow: 0 1px 24px rgba(26, 26, 24, 0.07);
+}
+
+/* ヒーロー（ダーク背景）上では透明・白文字 */
+.nav.dark {
+  background: transparent;
+}
+
+.nav.dark .logoText,
+.nav.dark .tab {
+  color: rgba(245, 242, 236, 0.75);
+}
+
+.nav.dark .active {
+  border-bottom-color: rgba(245, 242, 236, 0.75);
+}
+
+.nav.dark .logoImg {
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+.nav.dark .burgerLine {
+  background: var(--paper);
 }
 
 .logo {
@@ -53,18 +75,18 @@
 }
 
 .tab {
-  font-family: var(--font-jp);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 0.25rem 0.75rem;
   color: var(--ink);
-  border-bottom: 1.5px solid transparent;
-  transition: border-color 0.2s, color 0.2s;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s, opacity 0.2s;
 }
 
 .tab:hover {
-  color: var(--accent);
+  opacity: 0.6;
 }
 
 .active {

@@ -2,15 +2,17 @@
    デザイントークン
    ============================= */
 :root {
+  /* カラー 3グループ: Dark / Light / Mid */
   --ink: #1a1a18;
   --paper: #f5f2ec;
-  --cream: #ede9e0;
-  --accent: #2d5a3d;
+  --cream: #f0ede6;
   --muted: #8a8679;
   --rule: #c8c4ba;
 
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-jp: 'Noto Serif JP', serif;
+  /* フォント: 筑紫新聞明朝系 + Open Sans */
+  --font-serif: 'Shippori Mincho B1', 'Hiragino Mincho ProN', serif;
+  --font-jp: 'Shippori Mincho B1', 'Hiragino Mincho ProN', serif;
+  --font-sans: 'Open Sans', system-ui, sans-serif;
 
   /* ブレークポイント: 900px (tablet), 600px (mobile) */
 }

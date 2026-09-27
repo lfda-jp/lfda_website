@@ -74,7 +74,7 @@ export default function BlobCanvas({ className }) {
     const cfg = { distortion: 1.25, speed: 0.85, frequency: 1.10, roughness: 0.14, metalness: 0.98 }
 
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color(0xf5f2ec)
+    scene.background = new THREE.Color(0x1a1a18)
 
     const w = container.clientWidth
     const h = container.clientHeight

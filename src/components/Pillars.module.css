@@ -128,11 +128,11 @@
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.14);
 }
 
-/* カード別カラー */
-.c1 { background: #ede9df; }
-.c2 { background: #dfe8e4; }
-.c3 { background: #e8dfe3; }
-.c4 { background: #dfe2e8; }
+/* カード — 統一カラー (ink × paper 2値のみ) */
+.c1 { background: var(--paper); }
+.c2 { background: var(--ink); }
+.c3 { background: var(--paper); }
+.c4 { background: var(--ink); }
 
 /* ── CSS 3D ブロブ ── */
 .blobWrap {
@@ -152,10 +152,20 @@
   filter: blur(2px);
 }
 
-.c1 .blob { background: radial-gradient(ellipse at 40% 40%, #c8c4b8 0%, #a8a49a 50%, transparent 80%); }
-.c2 .blob { background: radial-gradient(ellipse at 40% 40%, #b4ccc4 0%, #8aada4 50%, transparent 80%); }
-.c3 .blob { background: radial-gradient(ellipse at 40% 40%, #ccb8be 0%, #ad9098 50%, transparent 80%); }
-.c4 .blob { background: radial-gradient(ellipse at 40% 40%, #b4bccc 0%, #8a96ad 50%, transparent 80%); }
+.c1 .blob { background: radial-gradient(ellipse at 40% 40%, #c4c0ba 0%, #9c9890 50%, transparent 80%); }
+.c2 .blob { background: radial-gradient(ellipse at 40% 40%, #484440 0%, #2c2a28 50%, transparent 80%); }
+.c3 .blob { background: radial-gradient(ellipse at 40% 40%, #c4c0ba 0%, #9c9890 50%, transparent 80%); }
+.c4 .blob { background: radial-gradient(ellipse at 40% 40%, #484440 0%, #2c2a28 50%, transparent 80%); }
+
+/* ダークカード内のテキスト */
+.c2 .series,
+.c4 .series { color: rgba(245, 242, 236, 0.35); }
+.c2 .title,
+.c4 .title { color: var(--paper); }
+.c2 .body,
+.c4 .body { color: rgba(245, 242, 236, 0.5); }
+.c2 .bigNo,
+.c4 .bigNo { color: rgba(245, 242, 236, 0.06); }
 
 /* 光沢ハイライト */
 .blobReflect {

@@ -27,9 +27,14 @@ export default function Nav() {
   const activeId = useActiveSection(SECTION_IDS)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [overHero, setOverHero] = useState(true)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 8)
+      setOverHero(y < window.innerHeight * 0.85)
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -43,7 +48,7 @@ export default function Nav() {
   const sectionMap = { About: 'about', Contents: 'contents' }
 
   return (
-    <header className={`${styles.nav}${scrolled ? ` ${styles.scrolled}` : ''}`}>
+    <header className={`${styles.nav}${scrolled ? ` ${styles.scrolled}` : ''}${overHero ? ` ${styles.dark}` : ''}`}>
       <a href="#about" className={styles.logo}>
         <img
           src={import.meta.env.BASE_URL + 'lfda_logo.png'}

@@ -24,6 +24,15 @@ export default function Hero() {
           Follow on Instagram
         </a>
       </div>
+
+      {/* LFDAマーク — 右下 */}
+      <div className={styles.mark}>
+        <img
+          src={import.meta.env.BASE_URL + 'lfda_logo.png'}
+          alt="LFDA"
+          className={styles.markImg}
+        />
+      </div>
     </section>
   )
 }
