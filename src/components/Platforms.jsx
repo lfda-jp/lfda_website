@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from 'react'
 import { platforms } from '../data/platforms'
 import styles from './Platforms.module.css'
 
@@ -52,13 +53,58 @@ const ICONS = {
 }
 
 export default function Platforms() {
+  const trackRef = useRef(null)
+  const [active, setActive] = useState(0)
+
+  const scrollTo = (i) => {
+    const track = trackRef.current
+    if (!track) return
+    const cards = track.querySelectorAll('a')
+    cards[i]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+  }
+
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(Number(e.target.dataset.index))
+        })
+      },
+      { root: track, threshold: 0.5 }
+    )
+    const cards = track.querySelectorAll('a')
+    cards.forEach((c, i) => { c.dataset.index = i; observer.observe(c) })
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section className={styles.platforms}>
       <header className={styles.header}>
-        <p className={styles.label}>発信先</p>
-        <h2 className={styles.heading}>Platforms</h2>
+        <div className={styles.headerLeft}>
+          <p className={styles.label}>発信先</p>
+          <h2 className={styles.heading}>Platforms</h2>
+        </div>
+        <div className={styles.headerRight}>
+          <div className={styles.dots}>
+            {platforms.map((_, i) => (
+              <button
+                key={i}
+                className={`${styles.dot} ${active === i ? styles.dotActive : ''}`}
+                onClick={() => scrollTo(i)}
+                aria-label={`Platform ${i + 1}`}
+              />
+            ))}
+          </div>
+          <div className={styles.arrows}>
+            <button className={styles.arrowBtn} onClick={() => scrollTo(Math.max(0, active - 1))} aria-label="前へ">←</button>
+            <button className={styles.arrowBtn} onClick={() => scrollTo(Math.min(platforms.length - 1, active + 1))} aria-label="次へ">→</button>
+          </div>
+        </div>
       </header>
-      <div className={styles.grid}>
+
+      <div className={styles.track} ref={trackRef}>
         {platforms.map((p) => (
           <a
             key={p.id}

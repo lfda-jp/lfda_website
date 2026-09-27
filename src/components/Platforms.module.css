@@ -1,16 +1,23 @@
 .platforms {
   border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  overflow: hidden;
 }
 
+/* ヘッダー */
 .header {
-  padding: 3rem 4rem 2rem;
-  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 3rem 3rem 2rem;
 }
+
+.headerLeft {}
 
 .label {
   font-family: var(--font-jp);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
   color: var(--muted);
   margin-bottom: 0.4rem;
 }
@@ -18,33 +25,103 @@
 .heading {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
   color: var(--ink);
+  line-height: 1;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  padding: 0 2rem 2.5rem;
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
+/* ドット進捗 */
+.dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+  padding: 0;
+}
+
+.dotActive {
+  background: var(--ink);
+  transform: scale(1.5);
+}
+
+/* 矢印ボタン */
+.arrows {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.arrowBtn {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: transparent;
+  font-size: 0.9rem;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.arrowBtn:hover {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+/* スクロールトラック */
+.track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 3rem;
+  padding: 0 3rem 3rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* カード */
 .card {
+  flex: 0 0 clamp(240px, 30vw, 300px);
+  min-height: 220px;
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 2rem 1.75rem;
-  border-radius: 16px;
+  border-radius: 20px;
   background: var(--cream);
   border: 1px solid var(--rule);
   color: var(--ink);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  text-decoration: none;
   transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .card:hover {
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
-  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
 }
 
 .iconWrap {
@@ -58,6 +135,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   font-weight: 700;
+  color: var(--ink);
 }
 
 .desc {
@@ -69,34 +147,30 @@
 }
 
 .arrow {
-  font-family: var(--font-jp);
   font-size: 0.75rem;
   color: var(--muted);
   margin-top: auto;
 }
 
 @media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 1.5rem 2rem;
-  }
-}
-
-@media (max-width: 600px) {
   .header {
     padding: 2.5rem 1.5rem 1.5rem;
   }
 
-  .heading {
-    font-size: 2rem;
-  }
-
-  .grid {
-    padding: 0 1rem 1.5rem;
-    gap: 10px;
+  .track {
+    padding: 0 1.5rem 2.5rem;
+    scroll-padding-inline: 1.5rem;
   }
 
   .card {
+    flex: 0 0 clamp(220px, 70vw, 280px);
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    flex: 0 0 clamp(200px, 80vw, 260px);
+    min-height: 200px;
     padding: 1.5rem 1.25rem;
   }
 }
