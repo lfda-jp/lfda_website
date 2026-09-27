@@ -22,10 +22,7 @@ function PillarModal({ pillar, onClose }) {
         <button className={styles.sheetClose} onClick={onClose} aria-label="閉じる">✕</button>
 
         <p className={styles.sheetSeries}>{pillar.series}</p>
-        <h3 className={styles.sheetTitle}>
-          {pillar.emoji && <span className={styles.sheetEmoji}>{pillar.emoji}</span>}
-          {pillar.title}
-        </h3>
+        <h3 className={styles.sheetTitle}>{pillar.title}</h3>
 
         {pillar.tagline && (
           <p className={styles.sheetTagline}>── {pillar.tagline}</p>
