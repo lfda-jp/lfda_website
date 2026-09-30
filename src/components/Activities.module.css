@@ -1,0 +1,546 @@
+/* ── 内部での活動 ──
+   基本ルール: タイトル・サブタイトル・LFDAマーク（右下）・オブジェクト1個 /
+   抑えめのグラデーション背景 / 色は ink・paper系・中間色の3まとまり / 境界線なし */
+.activities {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 6rem 4rem 8rem;
+  background:
+    radial-gradient(ellipse 50% 40% at 16% 26%, rgba(255, 255, 255, 0.6), transparent 70%),
+    linear-gradient(180deg, var(--paper) 0%, var(--cream) 55%, #e8e5dd 100%);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* オブジェクト — 3Dブロブ（WebGL・背景透過）を右上にはみ出させる */
+.object {
+  position: absolute;
+  top: -3rem;
+  right: -4rem;
+  width: clamp(260px, 30vw, 420px);
+  aspect-ratio: 1;
+  opacity: 0.7;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ── タイトル・サブタイトル ── */
+.header {
+  margin-bottom: 3rem;
+}
+
+.eyebrow {
+  font-family: var(--font-jp);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: rgba(26, 26, 24, 0.62);
+  margin-bottom: 0.6rem;
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--ink);
+}
+
+/* ── カード（ink × paper の2値） ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+  padding: 2.5rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 4px 24px rgba(26, 26, 24, 0.06);
+  color: var(--ink);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 48px rgba(26, 26, 24, 0.12);
+}
+
+.cardDark {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+.cardSubtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  font-feature-settings: 'palt';
+  margin-top: 0.6rem;
+}
+
+.cardLead {
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  line-height: 1.95;
+  color: rgba(26, 26, 24, 0.75);
+  margin-top: 1.5rem;
+  max-width: 30em;
+}
+
+.cardDark .cardLead {
+  color: rgba(245, 242, 236, 0.72);
+}
+
+/* ボタンの ::after をカード全面に広げ、どこを押しても開けるようにする */
+.cardButton {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 2rem;
+  font-family: var(--font-jp);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: inherit;
+}
+
+.cardButton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+}
+
+.cardButton:focus-visible {
+  outline: none;
+}
+
+.cardButton:focus-visible::after {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.arrow {
+  display: inline-block;
+  margin-left: 0.4em;
+  transition: transform 0.2s;
+}
+
+.card:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* LFDAマーク — 右下 */
+.mark {
+  position: absolute;
+  right: 3rem;
+  bottom: 2.5rem;
+  height: 44px;
+  width: auto;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .activities {
+    padding: 5rem 2rem 7rem;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    min-height: 0;
+  }
+
+  .object {
+    top: -2.5rem;
+    right: -4.5rem;
+    width: 240px;
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 600px) {
+  .activities {
+    padding: 4.5rem 1.5rem 6rem;
+  }
+
+  .card {
+    padding: 2rem 1.75rem;
+    border-radius: 20px;
+  }
+
+  .cardButton::after {
+    border-radius: 20px;
+  }
+
+  .object {
+    width: 200px;
+    right: -5rem;
+  }
+
+  .mark {
+    right: 1.5rem;
+    bottom: 1.5rem;
+    height: 32px;
+  }
+}
+
+/* ── 詳細モーダル: モバイル = ボトムシート ── */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.55);
+  animation: backdropIn 0.22s ease forwards;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.sheet {
+  --sheet-text: rgba(245, 242, 236, 0.8);
+  --sheet-sub: rgba(245, 242, 236, 0.55);
+
+  position: relative;
+  width: 100%;
+  max-height: 90svh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 1.75rem 1.5rem 2.5rem;
+  border-radius: 20px 20px 0 0;
+  background: var(--ink);
+  color: var(--paper);
+  animation: sheetUp 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* ドラッグハンドル（モバイル用） */
+.sheet::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 4px;
+  margin: 0 auto 1.75rem;
+  border-radius: 2px;
+  background: rgba(245, 242, 236, 0.2);
+}
+
+/* ── 詳細モーダル: デスクトップ = 中央ポップアップ ── */
+@media (min-width: 601px) {
+  .backdrop {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .sheet {
+    max-width: 640px;
+    max-height: 85svh;
+    padding: 3rem 3rem 2.5rem;
+    border-radius: 20px;
+    animation: sheetPop 0.28s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+
+  .sheet::before {
+    display: none;
+  }
+}
+
+@keyframes sheetPop {
+  from { transform: scale(0.93) translateY(12px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .sheet {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sheetClose {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(245, 242, 236, 0.08);
+  color: rgba(245, 242, 236, 0.7);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.sheetClose:hover {
+  background: rgba(245, 242, 236, 0.16);
+}
+
+.sheetEyebrow {
+  font-family: var(--font-jp);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--sheet-sub);
+  margin-bottom: 0.6rem;
+}
+
+.sheetTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+.sheetSubtitle {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  font-feature-settings: 'palt';
+  color: var(--sheet-text);
+  margin-top: 0.5rem;
+}
+
+.sheetLead {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.9;
+  font-feature-settings: 'palt';
+  word-break: auto-phrase;
+  margin: 2rem 0 1.5rem;
+}
+
+.para {
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  line-height: 2;
+  color: var(--sheet-text);
+}
+
+.para + .para {
+  margin-top: 1.3em;
+}
+
+.block {
+  margin-top: 3.25rem;
+}
+
+.blockHeading {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.5;
+  word-break: auto-phrase;
+  text-wrap: balance; /* 「…ハッカソ／ン」のような1文字だけの折り返しを防ぐ */
+  margin-bottom: 1rem;
+}
+
+.meta {
+  font-family: var(--font-jp);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--sheet-sub);
+  margin-bottom: 0.4rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(245, 242, 236, 0.1);
+  font-family: var(--font-jp);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--paper);
+}
+
+/* 公開した記事・Podcastへのリンク（状態タグと区別するため明るい地にする） */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  background: var(--paper);
+  font-family: var(--font-jp);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  transition: opacity 0.15s;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+/* ── 読書会: これまでに読んだ本 ── */
+.books {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+  margin-top: 1.5rem;
+}
+
+.bookTitle {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.45;
+  word-break: auto-phrase;
+  text-wrap: balance;
+}
+
+.bookSubtitle {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  word-break: auto-phrase;
+  color: var(--sheet-text);
+  margin-top: 0.2rem;
+}
+
+.byline {
+  font-family: var(--font-jp);
+  font-size: 0.78rem;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: var(--sheet-sub);
+  margin: 0.6rem 0 1rem;
+}
+
+.author {
+  color: var(--sheet-text);
+  margin-right: 1em;
+}
+
+/* 出版情報は途中で折り返さず、入らなければまとめて次の行へ */
+.publication {
+  display: inline-block;
+}
+
+.origin {
+  font-family: var(--font-jp);
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: var(--sheet-sub);
+  margin-bottom: 0.5rem;
+}
+
+.book .tag {
+  margin-top: 1rem;
+}
+
+/* ── ミニハッカソン: 開催回 ── */
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-jp);
+  font-size: 0.8rem;
+  color: var(--sheet-sub);
+}
+
+.listHeading {
+  font-family: var(--font-jp);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: var(--sheet-sub);
+  margin: 2rem 0 0.9rem;
+}
+
+.works {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.work {
+  display: grid;
+  grid-template-columns: 4.5em minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.workMember {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--paper);
+}
+
+.workTitle {
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--sheet-text);
+}
+
+.workLink {
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 242, 236, 0.35);
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 0.15s;
+}
+
+.workLink:hover {
+  text-decoration-color: currentColor;
+}
+
+.workNote {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--sheet-sub);
+  margin-top: 0.2rem;
+}
+
+/* LFDAマーク — シート右下 */
+.sheetMark {
+  display: block;
+  height: 28px;
+  width: auto;
+  margin: 3.5rem 0 0 auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.25;
+}
