@@ -3,7 +3,7 @@ import styles from './Values.module.css'
 
 export default function Values() {
   return (
-    <section className={styles.values}>
+    <section id="values" className={styles.values}>
       <header className={styles.header}>
         <p className={styles.eyebrow}>私たちの行動原則</p>
         <h2 className={styles.heading}>Values</h2>

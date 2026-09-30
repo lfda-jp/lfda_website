@@ -126,6 +126,19 @@
   transition: transform 0.2s, opacity 0.2s;
 }
 
+/* 開いている間は × にする（線の中心間隔 6.5px） */
+.burgerLine.open:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.burgerLine.open:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerLine.open:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
 .mobileMenu {
   display: none;
 }
@@ -143,31 +156,94 @@
     margin-left: 0;
   }
 
+  /* 全画面メニュー — ヘッダーの下を覆う。線は使わず余白で区切る */
   .mobileMenu {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
+    display: block;
+    position: fixed;
     top: 80px;
     left: 0;
     right: 0;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
-    padding: 1rem 2rem;
-    gap: 0.5rem;
+    bottom: 0;
     z-index: 99;
+    overflow-y: auto;
+    padding: 2.75rem 2.25rem 6rem;
+    background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 60%, #e8e5dd 100%);
+    animation: menuIn 0.25s ease forwards;
   }
+}
 
-  .mobileTab {
-    font-family: var(--font-jp);
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--rule);
-    color: var(--ink);
-  }
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-  .mobileTab:last-child {
-    border-bottom: none;
+@media (prefers-reduced-motion: reduce) {
+  .mobileMenu {
+    animation: none;
   }
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.menuLabel {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  color: var(--ink);
+}
+
+.menuEn {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2.1rem;
+  line-height: 1.1;
+}
+
+.menuJa {
+  font-family: var(--font-jp);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: rgba(26, 26, 24, 0.55);
+}
+
+/* 現在地 — ラベルの左に小さな点（ラベルの位置はずらさない） */
+.menuDot {
+  position: absolute;
+  left: -1.1rem;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.menuChildren {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.8rem;
+}
+
+.menuChild {
+  font-family: var(--font-jp);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: rgba(26, 26, 24, 0.7);
+}
+
+/* LFDAマーク — 右下 */
+.menuMark {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  height: 32px;
+  width: auto;
+  opacity: 0.25;
+  pointer-events: none;
 }

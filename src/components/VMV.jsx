@@ -4,7 +4,7 @@ import styles from './VMV.module.css'
 
 export default function VMV() {
   return (
-    <div className={styles.wrapper}>
+    <div id="vision" className={styles.wrapper}>
       {/* Vision — クリーム背景、シルバーブロブ（右側） */}
       <section className={styles.vision}>
         <MiniBlob className={styles.blobVision} dark={false} />

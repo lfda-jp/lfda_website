@@ -149,7 +149,7 @@ export default function Pillars() {
   }, [])
 
   return (
-    <section className={styles.pillars}>
+    <section id="series" className={styles.pillars}>
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <p className={styles.eyebrow}>コンテンツシリーズ</p>

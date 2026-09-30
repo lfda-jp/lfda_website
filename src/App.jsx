@@ -16,14 +16,18 @@ export default function App() {
     <>
       <Nav />
       <main>
+        {/* About */}
         <Hero />
         <Reveal><VMV /></Reveal>
+        <Reveal><Values /></Reveal>
+        {/* Contents */}
         <Reveal><Pillars /></Reveal>
         <Reveal><Contents /></Reveal>
+        <Reveal><Platforms /></Reveal>
+        {/* Team */}
         <Reveal><Members /></Reveal>
         <Reveal><Activities /></Reveal>
-        <Reveal><Values /></Reveal>
-        <Reveal><Platforms /></Reveal>
+        {/* Contact */}
         <Reveal><Contact /></Reveal>
       </main>
       <Footer />

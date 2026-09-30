@@ -50,6 +50,11 @@ a {
   text-decoration: none;
 }
 
+/* ナビで飛んだとき、見出しが固定ヘッダー（80px）の下に隠れないようにする */
+main [id] {
+  scroll-margin-top: 80px;
+}
+
 button {
   cursor: pointer;
   border: none;

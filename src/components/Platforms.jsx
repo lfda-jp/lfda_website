@@ -80,7 +80,7 @@ export default function Platforms() {
   }, [])
 
   return (
-    <section className={styles.platforms}>
+    <section id="platforms" className={styles.platforms}>
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <p className={styles.label}>発信先</p>

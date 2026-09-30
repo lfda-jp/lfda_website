@@ -2,7 +2,48 @@ import { useState, useEffect } from 'react'
 import { useActiveSection } from '../hooks/useActiveSection'
 import styles from './Nav.module.css'
 
-const SECTION_IDS = ['about', 'contents']
+// ヘッダーの4つの入口。sections のどれかを見ている間、その入口が選択状態になる
+const NAV = [
+  {
+    label: 'About',
+    ja: '私たちについて',
+    href: '#about',
+    sections: ['about', 'vision', 'values'],
+    children: [
+      { label: 'Vision・Mission', href: '#vision' },
+      { label: 'Values', href: '#values' },
+    ],
+  },
+  {
+    label: 'Contents',
+    ja: '発信',
+    href: '#series',
+    sections: ['series', 'contents', 'platforms'],
+    children: [
+      { label: 'Series', href: '#series' },
+      { label: 'note・Podcast・Instagram', href: '#contents' },
+      { label: 'Platforms', href: '#platforms' },
+    ],
+  },
+  {
+    label: 'Team',
+    ja: 'メンバーと活動',
+    href: '#members',
+    sections: ['members', 'activities'],
+    children: [
+      { label: 'Members', href: '#members' },
+      { label: '内部での活動', href: '#activities' },
+    ],
+  },
+  {
+    label: 'Contact',
+    ja: 'お問い合わせ',
+    href: '#contact',
+    sections: ['contact'],
+  },
+]
+
+const SECTION_IDS = NAV.flatMap((g) => g.sections)
 
 const InstagramIcon = () => (
   <svg
@@ -28,6 +69,7 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [overHero, setOverHero] = useState(false)
+  const [atBottom, setAtBottom] = useState(false)
 
   useEffect(() => {
     const onScroll = () => {
@@ -35,21 +77,35 @@ export default function Nav() {
       setScrolled(y > 8)
       // 64px = nav height: hero scrolls under nav only after y > 64
       setOverHero(y > 64 && y < window.innerHeight * 0.85)
+      // 短いContactは判定位置まで上がってこないので、ページ末尾に着いたらContactを選択状態にする
+      setAtBottom(window.innerHeight + y >= document.documentElement.scrollHeight - 4)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const tabs = [
-    { label: 'About',    href: '#about' },
-    { label: 'Contents', href: '#contents' },
-    { label: 'Contact',  href: '#contact' },
-  ]
+  // 全画面メニューを開いている間は背面をスクロールさせない（Esc・PC幅への切り替えで閉じる）
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false) }
+    const wide = window.matchMedia('(min-width: 601px)')
+    const onWide = (e) => { if (e.matches) setMenuOpen(false) }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKey)
+    wide.addEventListener('change', onWide)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+      wide.removeEventListener('change', onWide)
+    }
+  }, [menuOpen])
 
-  const sectionMap = { About: 'about', Contents: 'contents' }
+  const activeGroup = atBottom ? 'Contact' : NAV.find((g) => g.sections.includes(activeId))?.label
+  const dark = overHero && !menuOpen
+  const closeMenu = () => setMenuOpen(false)
 
   return (
-    <header className={`${styles.nav}${scrolled ? ` ${styles.scrolled}` : ''}${overHero ? ` ${styles.dark}` : ''}`}>
+    <header className={`${styles.nav}${scrolled ? ` ${styles.scrolled}` : ''}${dark ? ` ${styles.dark}` : ''}`}>
       <a href="#about" className={styles.logo}>
         <img
           src={import.meta.env.BASE_URL + 'lfda_logo.png'}
@@ -66,11 +122,12 @@ export default function Nav() {
 
       {/* デスクトップ用タブ */}
       <nav className={styles.tabs} aria-label="メインナビゲーション">
-        {tabs.map(({ label, href }) => (
+        {NAV.map(({ label, href }) => (
           <a
             key={label}
             href={href}
-            className={`${styles.tab} ${activeId === sectionMap[label] ? styles.active : ''}`}
+            className={`${styles.tab} ${activeGroup === label ? styles.active : ''}`}
+            aria-current={activeGroup === label ? 'true' : undefined}
           >
             {label}
           </a>
@@ -93,26 +150,50 @@ export default function Nav() {
         className={styles.burger}
         onClick={() => setMenuOpen((v) => !v)}
         aria-expanded={menuOpen}
-        aria-label="メニューを開く"
+        aria-label={menuOpen ? 'メニューを閉じる' : 'メニューを開く'}
       >
         <span className={`${styles.burgerLine} ${menuOpen ? styles.open : ''}`} />
         <span className={`${styles.burgerLine} ${menuOpen ? styles.open : ''}`} />
         <span className={`${styles.burgerLine} ${menuOpen ? styles.open : ''}`} />
       </button>
 
-      {/* モバイルメニュー */}
+      {/* モバイル: 全画面メニュー */}
       {menuOpen && (
         <nav className={styles.mobileMenu} aria-label="モバイルナビゲーション">
-          {tabs.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              className={styles.mobileTab}
-              onClick={() => setMenuOpen(false)}
-            >
-              {label}
-            </a>
-          ))}
+          <ul className={styles.menuList}>
+            {NAV.map((g) => (
+              <li key={g.label}>
+                <a
+                  href={g.href}
+                  className={styles.menuLabel}
+                  onClick={closeMenu}
+                  aria-current={activeGroup === g.label ? 'true' : undefined}
+                >
+                  {activeGroup === g.label && <span className={styles.menuDot} aria-hidden="true" />}
+                  <span className={styles.menuEn}>{g.label}</span>
+                  <span className={styles.menuJa}>{g.ja}</span>
+                </a>
+                {g.children && (
+                  <ul className={styles.menuChildren}>
+                    {g.children.map((c) => (
+                      <li key={c.href}>
+                        <a href={c.href} className={styles.menuChild} onClick={closeMenu}>
+                          {c.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+          {/* LFDAマーク — 右下 */}
+          <img
+            src={import.meta.env.BASE_URL + 'lfda_logo.png'}
+            alt=""
+            aria-hidden="true"
+            className={styles.menuMark}
+          />
         </nav>
       )}
     </header>
